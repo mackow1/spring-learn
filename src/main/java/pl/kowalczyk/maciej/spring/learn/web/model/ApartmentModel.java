@@ -1,8 +1,12 @@
 package pl.kowalczyk.maciej.spring.learn.web.model;
 
+import jakarta.validation.constraints.NotEmpty;
+
 public class ApartmentModel {
 
     private Long id;
+
+    @NotEmpty(message = "uzupełnij pole name")
     private String name;
     private Integer price;
 
