@@ -2,6 +2,7 @@ package pl.kowalczyk.maciej.spring.learn.web;
 
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,11 +27,12 @@ public class ApartmentController {
 
     @GetMapping
 //    public String list(String name, Integer price) {
-    public String list(ApartmentModel apartmentModel) {
+    public String list(ApartmentModel apartmentModel, ModelMap modelMap) {
 //        LOGGER.info("list(" + name + ", " + price + ") ");
         LOGGER.info("list(" + apartmentModel + ") ");
 
         String result = null;
+        modelMap.addAttribute("hello", "greetings from backend");
 
         LOGGER.info("list(...) = " + result);
         return "apartments.html";
