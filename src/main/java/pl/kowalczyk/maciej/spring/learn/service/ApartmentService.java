@@ -6,6 +6,7 @@ import pl.kowalczyk.maciej.spring.learn.repository.entity.ApartmentEntity;
 import pl.kowalczyk.maciej.spring.learn.service.mapper.ApartmentMapper;
 import pl.kowalczyk.maciej.spring.learn.web.model.ApartmentModel;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 @Service
@@ -20,6 +21,16 @@ public class ApartmentService {
     public ApartmentService(ApartmentRepository apartmentRepository, ApartmentMapper apartmentMapper) {
         this.apartmentRepository = apartmentRepository;
         this.apartmentMapper = apartmentMapper;
+    }
+
+    public List<ApartmentModel> list() {
+        LOGGER.info("list()");
+
+        List<ApartmentEntity> apartmentEntities = apartmentRepository.findAll();
+
+
+        LOGGER.info("list(...) = ");
+        return null;
     }
 
     public ApartmentModel create(ApartmentModel apartmentModel) {

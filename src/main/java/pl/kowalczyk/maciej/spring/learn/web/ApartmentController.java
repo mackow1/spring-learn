@@ -33,6 +33,7 @@ public class ApartmentController {
 
         String result = null;
         modelMap.addAttribute("hello", "greetings from backend");
+//        modelMap.addAttribute("apartments", )
 
         LOGGER.info("list(...) = " + result);
         return "apartments.html";
