@@ -27,10 +27,10 @@ public class ApartmentService {
         LOGGER.info("list()");
 
         List<ApartmentEntity> apartmentEntities = apartmentRepository.findAll();
+        List<ApartmentModel> apartmentModels = apartmentMapper.fromEntities(apartmentEntities);
 
-
-        LOGGER.info("list(...) = ");
-        return null;
+        LOGGER.info("list(...) = " + apartmentModels);
+        return apartmentModels;
     }
 
     public ApartmentModel create(ApartmentModel apartmentModel) {

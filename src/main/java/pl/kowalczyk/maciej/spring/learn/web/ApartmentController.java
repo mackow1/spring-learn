@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import pl.kowalczyk.maciej.spring.learn.service.ApartmentService;
 import pl.kowalczyk.maciej.spring.learn.web.model.ApartmentModel;
 
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -31,9 +32,11 @@ public class ApartmentController {
 //        LOGGER.info("list(" + name + ", " + price + ") ");
         LOGGER.info("list(" + apartmentModel + ") ");
 
+        List<ApartmentModel> apartmentModels = apartmentService.list();
+
         String result = null;
         modelMap.addAttribute("hello", "greetings from backend");
-//        modelMap.addAttribute("apartments", )
+        modelMap.addAttribute("apartments", apartmentModels);
 
         LOGGER.info("list(...) = " + result);
         return "apartments.html";
