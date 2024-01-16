@@ -36,9 +36,9 @@ public class ApartmentService {
     public ApartmentModel create(ApartmentModel apartmentModel) {
         LOGGER.info("create(" + apartmentModel + ")");
 
-        ApartmentEntity apartmentEntity = apartmentMapper.convertToEntity(apartmentModel);
+        ApartmentEntity apartmentEntity = apartmentMapper.from(apartmentModel);
         ApartmentEntity savedApartmentEntity = apartmentRepository.save(apartmentEntity);
-        ApartmentModel convertedApartmentModel = apartmentMapper.convertToModel(savedApartmentEntity);
+        ApartmentModel convertedApartmentModel = apartmentMapper.from(savedApartmentEntity);
 
 //        ApartmentEntity apartmentEntity = modelMapper.map(apartmentModel, ApartmentEntity.class);
 //        ApartmentEntity savedApartmentEntity = apartmentRepository.save(apartmentEntity);
