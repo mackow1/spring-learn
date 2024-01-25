@@ -10,7 +10,7 @@ class AuthorMapperTest {
     public static final String AUTHOR_NAME_MACIEJ = "Maciej";
 
     @Test
-    void from() {
+    void givenMapperAndEntity_whenMapperFrom_thenModelIsNotNullAndNamesAreEqual() {
         // given
         AuthorMapper authorMapper = new AuthorMapper();
         AuthorEntity authorEntity = new AuthorEntity();
@@ -28,7 +28,7 @@ class AuthorMapperTest {
     }
 
     @Test
-    void testFrom() {
+    void givenMapperAndModel_whenMapperFrom_thenEntityNotNullAndNamesAreEqual() {
         // given
         AuthorMapper authorMapper = new AuthorMapper();
         AuthorModel authorModel = new AuthorModel();
