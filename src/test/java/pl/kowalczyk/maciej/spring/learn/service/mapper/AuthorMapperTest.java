@@ -26,4 +26,21 @@ class AuthorMapperTest {
                 () -> Assertions.assertEquals(AUTHOR_NAME_MACIEJ, authorModel.getFirstName(), "Names are not equal")
         );
     }
+
+    @Test
+    void testFrom() {
+        // given
+        AuthorMapper authorMapper = new AuthorMapper();
+        AuthorModel authorModel = new AuthorModel();
+        authorModel.setFirstName(AUTHOR_NAME_MACIEJ);
+
+        // when
+        AuthorEntity authorEntity = authorMapper.from(authorModel);
+
+        // then
+        Assertions.assertAll(
+                () -> Assertions.assertNotNull(authorEntity, "Entity is NULL"),
+                () -> Assertions.assertEquals(AUTHOR_NAME_MACIEJ, authorEntity.getFirstName(), "Names are not equal")
+        );
+    }
 }

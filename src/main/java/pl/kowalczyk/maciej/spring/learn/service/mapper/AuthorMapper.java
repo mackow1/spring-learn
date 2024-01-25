@@ -19,4 +19,14 @@ public class AuthorMapper {
         LOGGER.info("from(...) = " + authorModel);
         return authorModel;
     }
+
+    public AuthorEntity from(AuthorModel authorModel) {
+        LOGGER.info("from(" + authorModel + ")");
+
+        ModelMapper modelMapper = new ModelMapper();
+        AuthorEntity authorEntity = modelMapper.map(authorModel, AuthorEntity.class);
+
+        LOGGER.info("from(...) = " + authorEntity);
+        return authorEntity;
+    }
 }
