@@ -1,12 +1,14 @@
 package pl.kowalczyk.maciej.spring.learn.web;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.kowalczyk.maciej.spring.learn.service.AuthorService;
 import pl.kowalczyk.maciej.spring.learn.web.model.AuthorModel;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 //@Component
@@ -23,8 +25,13 @@ public class AuthorController {
     }
 
     @GetMapping
-    public String list(AuthorModel authorModel) {
+    public String list(AuthorModel authorModel, ModelMap modelMap) {
         LOGGER.info("list(" + authorModel + ")");
+
+        List<AuthorModel> authorModelList = authorService.list();
+
+        modelMap.addAttribute("authors", authorModelList);
+
         LOGGER.info("list(...) = ");
         return "authors.html";
     }
