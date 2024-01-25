@@ -4,7 +4,9 @@ import org.modelmapper.ModelMapper;
 import pl.kowalczyk.maciej.spring.learn.repository.entity.AuthorEntity;
 import pl.kowalczyk.maciej.spring.learn.web.model.AuthorModel;
 
+import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 public class AuthorMapper {
 
@@ -28,5 +30,16 @@ public class AuthorMapper {
 
         LOGGER.info("from(...) = " + authorEntity);
         return authorEntity;
+    }
+
+    public List<AuthorModel> fromEntities(List<AuthorEntity> authorEntities) {
+        LOGGER.info("fromEntities(" + authorEntities + ")");
+
+        List<AuthorModel> authorModels = authorEntities.stream()
+                .map(this::from)
+                .collect(Collectors.toList());
+
+        LOGGER.info("fromEntities(...) = " + authorModels);
+        return authorModels;
     }
 }
