@@ -1,6 +1,7 @@
 package pl.kowalczyk.maciej.spring.learn.service.mapper;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Component;
 import pl.kowalczyk.maciej.spring.learn.repository.entity.AuthorEntity;
 import pl.kowalczyk.maciej.spring.learn.web.model.AuthorModel;
 
@@ -8,6 +9,7 @@ import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+@Component
 public class AuthorMapper {
 
     private static final Logger LOGGER = Logger.getLogger(AuthorMapper.class.getName());
