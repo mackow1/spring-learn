@@ -7,6 +7,7 @@ import pl.kowalczyk.maciej.spring.learn.web.model.CarModel;
 
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 @Component
 public class CarMapper {
@@ -36,9 +37,11 @@ public class CarMapper {
     public List<CarModel> fromEntities(List<CarEntity> carEntities) {
         LOGGER.info("fromEntities(" + carEntities + ")");
 
-        List<CarModel> result = null;
+        List<CarModel> carModels = carEntities.stream()
+                .map(this::from)
+                .collect(Collectors.toList());
 
-        LOGGER.info("fromEntities(...) = " + result);
-        return result;
+        LOGGER.info("fromEntities(...) = " + carModels);
+        return carModels;
     }
 }
