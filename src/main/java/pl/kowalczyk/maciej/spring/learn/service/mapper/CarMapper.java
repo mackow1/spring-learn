@@ -44,4 +44,13 @@ public class CarMapper {
         LOGGER.info("fromEntities(...) = " + carModels);
         return carModels;
     }
+
+    public List<CarEntity> fromModels(List<CarModel> carModels) {
+        LOGGER.info("fromModels(" + carModels + ")");
+
+        List<CarEntity> result = null;
+
+        LOGGER.info("fromModels(...) = " + result);
+        return result;
+    }
 }

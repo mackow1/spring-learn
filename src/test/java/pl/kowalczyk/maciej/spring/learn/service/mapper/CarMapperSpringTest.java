@@ -33,4 +33,15 @@ class CarMapperSpringTest {
                 () -> Assertions.assertEquals(carEntities.size(), carModels.size(), "Lists size are not equal")
         );
     }
+
+
+    @Test
+    void fromModels() {
+        // given
+
+        // when
+
+        // then
+
+    }
 }
