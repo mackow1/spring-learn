@@ -32,3 +32,7 @@ public class SpringLearnApplication {
 // TODO: 12.01.2024 Zrobić refactor ApartmentService, wydzielić metodę do nowej class i dodać ModelMapper
 // https://medium.com/@robindamisi/model-mapping-entities-to-dto-pojo-and-vise-versa-in-java-spring-boot-with-lombok-for-security-a34774ced8ff
 // Spring validation https://spring.io/guides/gs/validating-form-input/
+
+// TODO: 16.01.2024 Wyświetlić liste dla Author, Car. Dodać mappery i testy
+
+// TODO: 26.01.2024 Zamienić na formularze thymeleaf Car i Author

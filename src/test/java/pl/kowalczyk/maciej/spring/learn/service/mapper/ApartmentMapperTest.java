@@ -19,7 +19,7 @@ class ApartmentMapperTest {
         apartmentEntity.setPrice(1234);
 
         // when
-        ApartmentModel apartmentModel = apartmentMapper.convertToModel(apartmentEntity);
+        ApartmentModel apartmentModel = apartmentMapper.from(apartmentEntity);
 
         // then
         Assertions.assertAll(
