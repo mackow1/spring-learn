@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import pl.kowalczyk.maciej.spring.learn.repository.entity.CarEntity;
 import pl.kowalczyk.maciej.spring.learn.web.model.CarModel;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 @Component
@@ -30,5 +31,14 @@ public class CarMapper {
 
         LOGGER.info("from(...) = " + carEntity);
         return carEntity;
+    }
+
+    public List<CarModel> fromEntities(List<CarEntity> carEntities) {
+        LOGGER.info("fromEntities(" + carEntities + ")");
+
+        List<CarModel> result = null;
+
+        LOGGER.info("fromEntities(...) = " + result);
+        return result;
     }
 }
