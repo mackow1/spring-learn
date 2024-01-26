@@ -5,6 +5,7 @@ import pl.kowalczyk.maciej.spring.learn.repository.CarRepository;
 import pl.kowalczyk.maciej.spring.learn.repository.entity.CarEntity;
 import pl.kowalczyk.maciej.spring.learn.web.model.CarModel;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 @Service
@@ -18,9 +19,13 @@ public class CarService {
         this.carRepository = carRepository;
     }
 
-    public void list() {
+    public List<CarModel> list() {
         LOGGER.info("list()");
+
+
+
         LOGGER.info("list(...) = ");
+        return null;
     }
 
     public CarEntity create(CarModel carModel) {
