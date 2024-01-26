@@ -48,9 +48,11 @@ public class CarMapper {
     public List<CarEntity> fromModels(List<CarModel> carModels) {
         LOGGER.info("fromModels(" + carModels + ")");
 
-        List<CarEntity> result = null;
+        List<CarEntity> carEntities = carModels.stream()
+                .map(this::from)
+                .collect(Collectors.toList());
 
-        LOGGER.info("fromModels(...) = " + result);
-        return result;
+        LOGGER.info("fromModels(...) = " + carEntities);
+        return carEntities;
     }
 }

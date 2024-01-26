@@ -38,10 +38,16 @@ class CarMapperSpringTest {
     @Test
     void fromModels() {
         // given
+        List<CarModel> carModels = new ArrayList<>();
+        carModels.add(new CarModel());
 
         // when
+        List<CarEntity> carEntities = carMapper.fromModels(carModels);
 
         // then
-
+        Assertions.assertAll(
+                () -> Assertions.assertNotNull(carEntities, "List is NULL"),
+                () -> Assertions.assertEquals(carModels.size(), carEntities.size(), "Lists size are not equal")
+        );
     }
 }
