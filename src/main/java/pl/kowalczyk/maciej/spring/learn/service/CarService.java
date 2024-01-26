@@ -40,12 +40,4 @@ public class CarService {
         LOGGER.info("create(...) = " + carEntity);
         return carRepository.save(carEntity);
     }
-
-    private CarEntity convertToEntity(CarModel carModel) {
-        CarEntity carEntity = new CarEntity();
-        carEntity.setModelName(carModel.getModelName());
-        carEntity.setHorsePower(carModel.getHorsePower());
-
-        return carEntity;
-    }
 }
