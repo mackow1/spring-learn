@@ -1,11 +1,13 @@
 package pl.kowalczyk.maciej.spring.learn.service.mapper;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Component;
 import pl.kowalczyk.maciej.spring.learn.repository.entity.CarEntity;
 import pl.kowalczyk.maciej.spring.learn.web.model.CarModel;
 
 import java.util.logging.Logger;
 
+@Component
 public class CarMapper {
 
     private static final Logger LOGGER = Logger.getLogger(CarMapper.class.getName());
