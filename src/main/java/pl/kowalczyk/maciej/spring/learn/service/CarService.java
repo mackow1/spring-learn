@@ -3,7 +3,6 @@ package pl.kowalczyk.maciej.spring.learn.service;
 import org.springframework.stereotype.Service;
 import pl.kowalczyk.maciej.spring.learn.repository.CarRepository;
 import pl.kowalczyk.maciej.spring.learn.repository.entity.CarEntity;
-import pl.kowalczyk.maciej.spring.learn.web.model.AuthorModel;
 import pl.kowalczyk.maciej.spring.learn.web.model.CarModel;
 
 import java.util.logging.Logger;
