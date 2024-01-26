@@ -1,5 +1,6 @@
 package pl.kowalczyk.maciej.spring.learn.service.mapper;
 
+import org.modelmapper.ModelMapper;
 import pl.kowalczyk.maciej.spring.learn.repository.entity.CarEntity;
 import pl.kowalczyk.maciej.spring.learn.web.model.CarModel;
 
@@ -10,11 +11,12 @@ public class CarMapper {
     private static final Logger LOGGER = Logger.getLogger(CarMapper.class.getName());
 
     public CarModel from(CarEntity carEntity) {
-        LOGGER.info("from()");
+        LOGGER.info("from(" + carEntity + ")");
 
-        CarModel result = null;
+        ModelMapper modelMapper = new ModelMapper();
+        CarModel carModel = modelMapper.map(carEntity, CarModel.class);
 
-        LOGGER.info("from(...) = " + result);
-        return result;
+        LOGGER.info("from(...) = " + carModel);
+        return carModel;
     }
 }
