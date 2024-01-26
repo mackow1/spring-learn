@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create apartment</title>
+</head>
+<body>
+<h1>Create apartment</h1>
+<div>
+    <div>Apartment data</div>
+    <div>
+        <form action="#" th:action="@{/apartments}" th:object="${apartmentModel}" method="post">
+            <div>
+<!--                apartment name: <input id="name" name="name">-->
+                apartment name: <input th:field="${apartmentModel.name}">
+            </div>
+            <div>
+<!--                apartment price: <input id="price" name="price">-->
+<!--                apartment price: <input th:field="${apartmentModel.price}">-->
+                apartment price: <input th:field="*{price}">
+            </div>
+            <div>
+                <button type="submit">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
