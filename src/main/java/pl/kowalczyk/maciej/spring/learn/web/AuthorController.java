@@ -25,8 +25,8 @@ public class AuthorController {
     }
 
     @GetMapping
-    public String list(AuthorModel authorModel, ModelMap modelMap) {
-        LOGGER.info("list(" + authorModel + ")");
+    public String list(ModelMap modelMap) {
+        LOGGER.info("list()");
 
         List<AuthorModel> authorModelList = authorService.list();
 
