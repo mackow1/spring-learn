@@ -1,12 +1,14 @@
 package pl.kowalczyk.maciej.spring.learn.web;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.kowalczyk.maciej.spring.learn.service.CarService;
 import pl.kowalczyk.maciej.spring.learn.web.model.CarModel;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 @Controller
@@ -22,13 +24,15 @@ public class CarController {
     }
 
     @GetMapping
-    public String list(CarModel carModel) {
-        LOGGER.info("list(" + carModel + ")");
+    public String list(ModelMap modelMap) {
+        LOGGER.info("list()");
 
-        String result = "cars.html";
+        List<CarModel> carModels = carService.list();
 
-        LOGGER.info("list(...) = " + result);
-        return result;
+        modelMap.addAttribute("cars", carModels);
+
+        LOGGER.info("list(...) = ");
+        return "cars.html";
     }
 
     @GetMapping(value = "/create")
