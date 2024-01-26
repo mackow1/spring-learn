@@ -35,7 +35,7 @@ public class CarService {
     public CarEntity create(CarModel carModel) {
         LOGGER.info("create(" + carModel + ")");
 
-        CarEntity carEntity = convertToEntity(carModel);
+        CarEntity carEntity = carMapper.from(carModel);
 
         LOGGER.info("create(...) = " + carEntity);
         return carRepository.save(carEntity);
