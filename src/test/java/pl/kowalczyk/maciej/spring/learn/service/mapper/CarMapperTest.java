@@ -27,4 +27,14 @@ class CarMapperTest {
                 () -> Assertions.assertEquals(MERCEDES_BENZ_C, carModel.getModelName(), "Names are not equal")
         );
     }
+
+    @Test
+    void testFrom() {
+        // given
+
+        // when
+
+        // then
+
+    }
 }

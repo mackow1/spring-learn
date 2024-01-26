@@ -19,4 +19,13 @@ public class CarMapper {
         LOGGER.info("from(...) = " + carModel);
         return carModel;
     }
+
+    public CarEntity from(CarModel carModel) {
+        LOGGER.info("from(" + carModel + ")");
+
+        CarEntity result = null;
+
+        LOGGER.info("from(...) = " + result);
+        return result;
+    }
 }
