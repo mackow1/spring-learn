@@ -34,3 +34,5 @@ public class SpringLearnApplication {
 // Spring validation https://spring.io/guides/gs/validating-form-input/
 
 // TODO: 16.01.2024 Wyświetlić liste dla Author, Car. Dodać mappery i testy
+
+// TODO: 26.01.2024 Zamienić na formularze thymeleaf Car i Author
