@@ -23,9 +23,10 @@ public class CarMapper {
     public CarEntity from(CarModel carModel) {
         LOGGER.info("from(" + carModel + ")");
 
-        CarEntity result = null;
+        ModelMapper modelMapper = new ModelMapper();
+        CarEntity carEntity = modelMapper.map(carModel, CarEntity.class);
 
-        LOGGER.info("from(...) = " + result);
-        return result;
+        LOGGER.info("from(...) = " + carEntity);
+        return carEntity;
     }
 }

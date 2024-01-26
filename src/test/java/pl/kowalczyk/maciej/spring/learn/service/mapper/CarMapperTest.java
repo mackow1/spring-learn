@@ -31,10 +31,17 @@ class CarMapperTest {
     @Test
     void givenMapperAndModel_whenMapperFrom_thenEntityNotNullAndModelNamesAreEqual() {
         // given
+        CarMapper carMapper = new CarMapper();
+        CarModel carModel = new CarModel();
+        carModel.setModelName(MERCEDES_BENZ_C);
 
         // when
+        CarEntity carEntity = carMapper.from(carModel);
 
         // then
-
+        Assertions.assertAll(
+                () -> Assertions.assertNotNull(carEntity, "Entity is NULL"),
+                () -> Assertions.assertEquals(MERCEDES_BENZ_C, carEntity.getModelName(), "Names are not equal")
+        );
     }
 }
