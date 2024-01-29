@@ -1,8 +1,13 @@
 package pl.kowalczyk.maciej.spring.learn.web.model;
 
+import jakarta.validation.constraints.NotEmpty;
+
 public class AuthorModel {
 
+    @NotEmpty(message = "pole nie może być puste")
     private String firstName;
+
+    @NotEmpty(message = "pole nie może być puste")
     private String lastName;
 
     public AuthorModel() {
