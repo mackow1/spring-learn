@@ -41,8 +41,11 @@ public class AuthorController {
     }
 
     @GetMapping(value = "/create")
-    public String createView() {
+    public String createView(ModelMap modelMap) {
         LOGGER.info("createView()");
+
+        modelMap.addAttribute("authorModel", new AuthorModel());
+
         LOGGER.info("createView(...) = ");
         return "create-author.html";
     }
