@@ -36,3 +36,6 @@ public class SpringLearnApplication {
 // TODO: 16.01.2024 Wyświetlić liste dla Author, Car. Dodać mappery i testy
 
 // TODO: 26.01.2024 Zamienić na formularze thymeleaf Car i Author
+
+// TODO: 26.01.2024 Dokończyć inne testy z artykułu
+// https://spring.io/guides/gs/testing-web/
