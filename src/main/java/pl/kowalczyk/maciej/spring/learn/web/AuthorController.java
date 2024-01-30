@@ -63,6 +63,6 @@ public class AuthorController {
         authorService.create(authorModel);
 
         LOGGER.info("create(...) = ");
-        return "authors.html";
+        return "redirect:/authors";
     }
 }
