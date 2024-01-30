@@ -40,10 +40,12 @@ public class CarController {
     }
 
     @GetMapping(value = "/create")
-    public String createView() {
+    public String createView(ModelMap modelMap) {
         LOGGER.info("createView()");
 
-        String result = "/create-car.html";
+        modelMap.addAttribute("carModel", new CarModel());
+
+        String result = "create-car.html";
 
         LOGGER.info("createView(...) = " + result);
         return result;
