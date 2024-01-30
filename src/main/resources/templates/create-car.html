@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Create car</title>
@@ -9,12 +9,14 @@
 <div>
     <div>Car data</div>
     <div>
-        <form action="/cars" method="post">
+        <form action="#" th:action="@{/cars}" th:object="${carModel}" method="post">
             <div>
-                car model name: <input id="modelName" name="modelName">
+                car model name: <input th:field="*{modelName}">
+                <span th:if="${#fields.hasErrors('modelName')}" th:errors="*{modelName}">Model Name Error</span>
             </div>
             <div>
-                horse power: <input id="horsePower" name="horsePower">
+                horse power: <input th:field="*{horsePower}">
+                <span th:if="${#fields.hasErrors('horsePower')}" th:errors="*{horsePower}">Horse Power Error</span>
             </div>
             <div>
                 <button type="submit">Create</button>
