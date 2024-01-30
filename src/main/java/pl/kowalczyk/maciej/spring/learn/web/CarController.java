@@ -1,14 +1,18 @@
 package pl.kowalczyk.maciej.spring.learn.web;
 
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.kowalczyk.maciej.spring.learn.service.CarService;
 import pl.kowalczyk.maciej.spring.learn.web.model.CarModel;
 
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Controller
@@ -46,11 +50,17 @@ public class CarController {
     }
 
     @PostMapping
-    public String create(CarModel carModel) {
+    public String create(
+            @Valid @ModelAttribute(name = "carModel") CarModel carModel, BindingResult bindingResult) {
         LOGGER.info("create(" + carModel + ")");
 
+        if (bindingResult.hasErrors()) {
+            LOGGER.log(Level.SEVERE, "form error: " + bindingResult.getAllErrors());
+            return "create-car.html";
+        }
+
         carService.create(carModel);
-        String result = "cars.html";
+        String result = "redirect:/cars";
 
         LOGGER.info("create(...) = " + result);
         return result;

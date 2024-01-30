@@ -1,8 +1,14 @@
 package pl.kowalczyk.maciej.spring.learn.web.model;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+
 public class CarModel {
 
+    @NotEmpty
     private String modelName;
+
+    @Min(message = "pole musi mieć wartość minimalną 1", value = 1)
     private Integer horsePower;
 
     public CarModel() {
