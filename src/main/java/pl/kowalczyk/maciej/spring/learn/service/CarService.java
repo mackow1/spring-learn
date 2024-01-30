@@ -32,12 +32,14 @@ public class CarService {
         return carModels;
     }
 
-    public CarEntity create(CarModel carModel) {
+    public CarModel create(CarModel carModel) {
         LOGGER.info("create(" + carModel + ")");
 
         CarEntity carEntity = carMapper.from(carModel);
+        CarEntity savedCarEntity = carRepository.save(carEntity);
+        CarModel converterdCarModel = carMapper.from(savedCarEntity);
 
-        LOGGER.info("create(...) = " + carEntity);
-        return carRepository.save(carEntity);
+        LOGGER.info("create(...) = " + converterdCarModel);
+        return converterdCarModel;
     }
 }

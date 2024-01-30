@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Create author</title>
@@ -9,12 +9,14 @@
     <div>
         <div>Author data</div>
         <div>
-            <form action="/authors" method="post">
+            <form action="#" th:action="@{/authors}" th:object="${authorModel}" method="post">
                 <div>
-                    author first name: <input id="firstName" name="firstName">
+                    author first name: <input th:field="*{firstName}">
+                    <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First Name Error</span>
                 </div>
                 <div>
-                    author last name: <input id="lastName" name="lastName">
+                    author last name: <input th:field="*{lastName}">
+                    <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last Name Error</span>
                 </div>
                 <div>
                     <button type="submit">Create</button>

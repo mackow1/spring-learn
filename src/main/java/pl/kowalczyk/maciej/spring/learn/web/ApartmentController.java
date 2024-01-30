@@ -64,9 +64,8 @@ public class ApartmentController {
         }
 
         apartmentService.create(apartmentModel);
-        String result = null;
 
-        LOGGER.info("create(...) = " + result);
+        LOGGER.info("create(...) = ");
 //        return "apartments.html";
         return "redirect:/apartments";
     }

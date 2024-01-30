@@ -32,9 +32,14 @@ public class AuthorService {
         return authorModels;
     }
 
-    public void create(AuthorModel authorModel) {
+    public AuthorModel create(AuthorModel authorModel) {
         LOGGER.info("create(" + authorModel + ")");
-//        authorRepository.create(authorModel);
-        LOGGER.info("create(...) = ");
+
+        AuthorEntity authorEntity = authorMapper.from(authorModel);
+        AuthorEntity savedAuthorEntity = authorRepository.save(authorEntity);
+        AuthorModel convertedAuthorModel = authorMapper.from(savedAuthorEntity);
+
+        LOGGER.info("create(...) = " + authorModel);
+        return convertedAuthorModel;
     }
 }

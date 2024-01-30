@@ -39,3 +39,5 @@ public class SpringLearnApplication {
 
 // TODO: 26.01.2024 Dokończyć inne testy z artykułu
 // https://spring.io/guides/gs/testing-web/
+
+// TODO: 30.01.2024 Internacjonalizacja stringów za pomocą ResourceBundle w Spring
