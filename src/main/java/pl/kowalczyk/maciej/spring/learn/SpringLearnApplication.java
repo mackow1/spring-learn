@@ -41,3 +41,5 @@ public class SpringLearnApplication {
 // https://spring.io/guides/gs/testing-web/
 
 // TODO: 30.01.2024 Internacjonalizacja stringów za pomocą ResourceBundle w Spring
+
+// TODO: 30.01.2024 Napisać testy jednostkowe MVC dla wszystkich metod CRUD w ApartmentController
