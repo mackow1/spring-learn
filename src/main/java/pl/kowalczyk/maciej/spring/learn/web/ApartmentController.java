@@ -20,7 +20,7 @@ public class ApartmentController {
 
     private static final Logger LOGGER = Logger.getLogger(ApartmentController.class.getName());
 
-    private ApartmentService apartmentService;
+    private final ApartmentService apartmentService;
 
     public ApartmentController(ApartmentService apartmentService) {
         this.apartmentService = apartmentService;
