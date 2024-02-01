@@ -6,7 +6,7 @@ public class ApartmentModel {
 
     private Long id;
 
-    @NotEmpty(message = "uzupełnij pole name")
+    @NotEmpty(message = "{not.empty.message}")
     private String name;
     private Integer price;
 

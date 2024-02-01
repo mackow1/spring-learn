@@ -4,10 +4,10 @@ import jakarta.validation.constraints.NotEmpty;
 
 public class AuthorModel {
 
-    @NotEmpty(message = "pole nie może być puste")
+    @NotEmpty(message = "{not.empty.message}")
     private String firstName;
 
-    @NotEmpty(message = "pole nie może być puste")
+    @NotEmpty(message = "{not.empty.message}")
     private String lastName;
 
     public AuthorModel() {
