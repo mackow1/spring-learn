@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.kowalczyk.maciej.spring.learn.service.ApartmentService;
@@ -72,11 +73,12 @@ public class ApartmentController {
         return "redirect:/apartments";
     }
 
-    public ApartmentModel read(Long id) {
+    @GetMapping(value = "/{id}")
+    public String read(@PathVariable Long id) {
         LOGGER.info("read(" + id + ")");
 
-        apartmentService.read(id);
-        ApartmentModel result = null;
+//        apartmentService.read(id);
+        String result = "redirect:/apartments/create";
 
         LOGGER.info("read(...) = " + result);
         return result;
