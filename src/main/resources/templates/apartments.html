@@ -8,5 +8,32 @@
 <h1>List of apartments</h1>
 <div th:text="${hello}"></div>
 <div th:text="${apartments}"></div>
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th> Name </th>
+            <th> Price </th>
+            <th> Read </th>
+            <th> Update </th>
+            <th> Delete </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${apartments.empty}">
+            <td colspan="2"> No Apartments Available </td>
+        </tr>
+        <tr th:each="apartment : ${apartments}">
+            <td><span th:text="${apartment.name}"> Name </span></td>
+            <td><span th:text="${apartment.price}"> Price </span></td>
+            <td><a th:href="@{/apartments/create}"> Read </a></td>
+            <td><span th:text="@{/apartment/create}"> Update </span></td>
+            <td><span th:text="@{/apartment/create}"> Delete </span></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div><a th:href="@{/apartments/create}"> Create </a></div>
 </body>
 </html>
