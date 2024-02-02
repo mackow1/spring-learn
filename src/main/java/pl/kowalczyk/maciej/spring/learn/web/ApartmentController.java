@@ -72,10 +72,10 @@ public class ApartmentController {
         return "redirect:/apartments";
     }
 
-    public ApartmentModel read(ApartmentModel apartmentModel) {
-        LOGGER.info("read()");
+    public ApartmentModel read(Long id) {
+        LOGGER.info("read(" + id + ")");
 
-        apartmentService.read(apartmentModel);
+        apartmentService.read(id);
         ApartmentModel result = null;
 
         LOGGER.info("read(...) = " + result);

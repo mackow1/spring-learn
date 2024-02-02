@@ -7,6 +7,7 @@ import pl.kowalczyk.maciej.spring.learn.service.mapper.ApartmentMapper;
 import pl.kowalczyk.maciej.spring.learn.web.model.ApartmentModel;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 @Service
@@ -48,11 +49,13 @@ public class ApartmentService {
         return convertedApartmentModel;
     }
 
-    public ApartmentEntity read(ApartmentModel apartmentModel) {
-        LOGGER.info("read()");
+    public ApartmentEntity read(Long id) {
+        LOGGER.info("read(" + id + ")");
 
-        LOGGER.info("read(...) = ");
-//        return apartmentRepository.findById();
+        Optional<ApartmentEntity> optionalApartmentEntity = apartmentRepository.findById(id);
+        ApartmentEntity apartmentEntity = optionalApartmentEntity.orElse(new ApartmentEntity());
+
+        LOGGER.info("read(...) = " + apartmentEntity);
         return null;
     }
 
