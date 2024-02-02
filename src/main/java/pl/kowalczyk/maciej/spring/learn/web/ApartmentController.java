@@ -1,6 +1,7 @@
 package pl.kowalczyk.maciej.spring.learn.web;
 
 import jakarta.validation.Valid;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -20,10 +21,12 @@ public class ApartmentController {
 
     private static final Logger LOGGER = Logger.getLogger(ApartmentController.class.getName());
 
-    private ApartmentService apartmentService;
+    private final ApartmentService apartmentService;
+    private final MessageSource messageSource;
 
-    public ApartmentController(ApartmentService apartmentService) {
+    public ApartmentController(ApartmentService apartmentService, MessageSource messageSource1) {
         this.apartmentService = apartmentService;
+        this.messageSource = messageSource1;
     }
 
     @GetMapping

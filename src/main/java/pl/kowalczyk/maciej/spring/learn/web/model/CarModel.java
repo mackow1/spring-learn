@@ -9,8 +9,8 @@ public class CarModel {
     @NotEmpty
     private String modelName;
 
-    @NotNull(message = "pole musi mieć wartość")
-    @Min(message = "pole musi mieć wartość minimalną 1", value = 1)
+    @NotNull(message = "{not.null.message}")
+    @Min(message = "{min.message}", value = 1)
     private Integer horsePower;
 
     public CarModel() {
