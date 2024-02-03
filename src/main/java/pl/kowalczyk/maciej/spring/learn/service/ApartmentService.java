@@ -49,14 +49,15 @@ public class ApartmentService {
         return convertedApartmentModel;
     }
 
-    public ApartmentEntity read(Long id) {
+    public ApartmentModel read(Long id) {
         LOGGER.info("read(" + id + ")");
 
         Optional<ApartmentEntity> optionalApartmentEntity = apartmentRepository.findById(id);
         ApartmentEntity apartmentEntity = optionalApartmentEntity.orElse(new ApartmentEntity());
+        ApartmentModel readApartmentModel = apartmentMapper.from(apartmentEntity);
 
-        LOGGER.info("read(...) = " + apartmentEntity);
-        return null;
+        LOGGER.info("read(...) = " + readApartmentModel);
+        return readApartmentModel;
     }
 
 //

@@ -74,11 +74,13 @@ public class ApartmentController {
     }
 
     @GetMapping(value = "/{id}")
-    public String read(@PathVariable Long id) {
+    public String read(@PathVariable Long id, ModelMap modelMap) {
         LOGGER.info("read(" + id + ")");
 
-//        apartmentService.read(id);
-        String result = "redirect:/apartments/create";
+        ApartmentModel apartmentModel = apartmentService.read(id);
+        modelMap.addAttribute("apartment", apartmentModel);
+
+        String result = "redirect:/apartment";
 
         LOGGER.info("read(...) = " + result);
         return result;
