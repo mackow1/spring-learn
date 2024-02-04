@@ -80,7 +80,7 @@ public class ApartmentController {
         ApartmentModel apartmentModel = apartmentService.read(id);
         modelMap.addAttribute("apartment", apartmentModel);
 
-        String result = "redirect:/apartment";
+        String result = "apartment.html";
 
         LOGGER.info("read(...) = " + result);
         return result;
