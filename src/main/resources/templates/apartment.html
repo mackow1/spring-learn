@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Apartment details</title>
+</head>
+<body>
+<h1>Apartment <span th:text="*{id}">id</span> details</h1>
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th> Name </th>
+            <th> Price </th>
+            <th> Update </th>
+            <th> Delete </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><span th:text="${apartment.name}"> Name </span></td>
+            <td><span th:text="${apartment.price}"> Price </span></td>
+            <td><span th:text="@{/apartment/create}"> Update </span></td>
+            <td><span th:text="@{/apartment/create}"> Delete </span></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

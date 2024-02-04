@@ -26,4 +26,15 @@ class ApartmentControllerHttpRequestTest {
         // then
         Assertions.assertTrue(forObject.contains("List of apartments"));
     }
+
+    @Test
+    void read() {
+        // given
+
+        // when
+        String forObject = restTemplate.getForObject("http://localhost:" + port + "/apartments", String.class);
+
+        // then
+        Assertions.assertTrue(forObject.contains("details"));
+    }
 }
