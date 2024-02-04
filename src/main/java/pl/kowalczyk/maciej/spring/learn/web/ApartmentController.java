@@ -85,4 +85,16 @@ public class ApartmentController {
         LOGGER.info("read(...) = " + result);
         return result;
     }
+
+    @PostMapping(value = "/{id}")
+    public String update(ApartmentModel apartmentModel) {
+        LOGGER.info("update(" + apartmentModel + ")");
+
+        apartmentService.update(apartmentModel);
+
+        String result = "redirect:/apartments";
+
+        LOGGER.info("update(...) = " + result);
+        return result;
+    }
 }

@@ -60,5 +60,15 @@ public class ApartmentService {
         return readApartmentModel;
     }
 
+    public ApartmentModel update(ApartmentModel apartmentModel) {
+        LOGGER.info("update()");
+
+        ApartmentEntity apartmentEntity = apartmentMapper.from(apartmentModel);
+        ApartmentEntity updatedApartmentEntity = apartmentRepository.save(apartmentEntity);
+        ApartmentModel updatedApartmentModel = apartmentMapper.from(updatedApartmentEntity);
+
+        LOGGER.info("update(...) = " + updatedApartmentModel);
+        return updatedApartmentModel;
+    }
 //
 }
