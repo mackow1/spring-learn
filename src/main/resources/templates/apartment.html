@@ -20,7 +20,7 @@
         <tr>
             <td><span th:text="${apartment.name}"> Name </span></td>
             <td><span th:text="${apartment.price}"> Price </span></td>
-            <td><span th:text="@{/apartment/create}"> Update </span></td>
+            <td><a th:href="@{/apartments/create(id = ${apartment.id})}"> Update </a></td>
             <td><span th:text="@{/apartment/create}"> Delete </span></td>
         </tr>
         </tbody>
