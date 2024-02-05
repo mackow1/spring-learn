@@ -104,7 +104,8 @@ public class ApartmentController {
         return result;
     }
 
-    public String delete(@PathVariable Long id, ModelMap modelMap) {
+    @GetMapping(value = "/delete/{id}")
+    public String delete(@PathVariable Long id) {
         LOGGER.info("delete(" + id + ")");
 
         apartmentService.delete(id);
