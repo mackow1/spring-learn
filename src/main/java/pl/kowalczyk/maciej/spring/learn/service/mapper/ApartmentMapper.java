@@ -20,10 +20,6 @@ public class ApartmentMapper {
         ModelMapper modelMapper = new ModelMapper();
         ApartmentModel apartmentModel = modelMapper.map(apartmentEntity, ApartmentModel.class);
 
-//        ApartmentModel apartmentModel = new ApartmentModel();
-//        apartmentModel.setId(apartmentEntity.getId());
-//        apartmentModel.setName(apartmentEntity.getName());
-
         LOGGER.info("from(...) = " + apartmentModel);
         return apartmentModel;
     }
@@ -31,10 +27,8 @@ public class ApartmentMapper {
     public ApartmentEntity from(ApartmentModel apartmentModel) {
         LOGGER.info("from(" + apartmentModel + ")");
 
-
-        ApartmentEntity apartmentEntity = new ApartmentEntity();
-        apartmentEntity.setName(apartmentModel.getName());
-        apartmentEntity.setPrice(apartmentModel.getPrice());
+        ModelMapper modelMapper = new ModelMapper();
+        ApartmentEntity apartmentEntity = modelMapper.map(apartmentModel, ApartmentEntity.class);
 
         LOGGER.info("from(...) = " + apartmentEntity);
         return apartmentEntity;
