@@ -70,5 +70,13 @@ public class ApartmentService {
         LOGGER.info("update(...) = " + updatedApartmentModel);
         return updatedApartmentModel;
     }
+
+    public void delete(Long id) {
+        LOGGER.info("delete()");
+
+        apartmentRepository.deleteById(id);
+
+        LOGGER.info("delete(...) = ");
+    }
 //
 }

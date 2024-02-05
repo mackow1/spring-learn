@@ -103,4 +103,14 @@ public class ApartmentController {
         LOGGER.info("update(...) = " + result);
         return result;
     }
+
+    public String delete(@PathVariable Long id, ModelMap modelMap) {
+        LOGGER.info("delete(" + id + ")");
+
+        apartmentService.delete(id);
+        String result = "redirect:/apartments";
+
+        LOGGER.info("delete(...) = " + result);
+        return result;
+    }
 }
