@@ -1,5 +1,6 @@
 package pl.kowalczyk.maciej.spring.learn.service;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 import pl.kowalczyk.maciej.spring.learn.repository.ApartmentRepository;
 import pl.kowalczyk.maciej.spring.learn.repository.entity.ApartmentEntity;
@@ -53,7 +54,7 @@ public class ApartmentService {
         LOGGER.info("read(" + id + ")");
 
         Optional<ApartmentEntity> optionalApartmentEntity = apartmentRepository.findById(id);
-        ApartmentEntity apartmentEntity = optionalApartmentEntity.orElse(new ApartmentEntity());
+        ApartmentEntity apartmentEntity = optionalApartmentEntity.orElseThrow(EntityNotFoundException::new);
         ApartmentModel readApartmentModel = apartmentMapper.from(apartmentEntity);
 
         LOGGER.info("read(...) = " + readApartmentModel);

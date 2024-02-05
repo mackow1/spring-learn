@@ -1,5 +1,6 @@
 package pl.kowalczyk.maciej.spring.learn.service;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,5 +51,24 @@ class ApartmentServiceIntegrationSpringTest {
                 () -> Assertions.assertEquals(createdApartmentModel.getId(), updatedApartmentModel.getId(), "IDs are not equal"),
                 () -> Assertions.assertEquals(SERVICE_UPDATE_INTEGRATION_TEST_UPDATED_NAME, updatedApartmentModel.getName(), "Names are not equal")
         );
+    }
+
+    @Test
+    void delete() {
+        // given
+        ApartmentModel apartmentModel = new ApartmentModel();
+        apartmentModel.setName("ServiceDeleteIntegrationTest");
+        apartmentModel.setPrice(1133);
+
+        // when
+        ApartmentModel createdApartmentModel = apartmentService.create(apartmentModel);
+        long id = createdApartmentModel.getId();
+
+        apartmentService.delete(id);
+
+        // then
+        Assertions.assertThrows(EntityNotFoundException.class, () -> {
+            apartmentService.read(id);
+        });
     }
 }
