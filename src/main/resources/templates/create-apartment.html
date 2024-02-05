@@ -2,14 +2,15 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Create apartment</title>
+    <title>Create or edit apartment</title>
 </head>
 <body>
-<h1>Create apartment</h1>
+<h1>Create or edit apartment</h1>
 <div>
     <div>Apartment data</div>
     <div>
         <form action="#" th:action="@{/apartments}" th:object="${apartmentModel}" method="post">
+            <input type="hidden" th:field="*{id}"/>
             <div>
 <!--                apartment name: <input id="name" name="name">-->
                 apartment name: <input th:field="${apartmentModel.name}">

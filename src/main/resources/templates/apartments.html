@@ -31,7 +31,7 @@
 <!--            <td><a th:href="@{/apartments/__${apartment.id}__}"> Read </a></td>-->
 <!--            <td><a th:href="@{/apartments}+'?id='+${apartment.id}"> Read </a></td>-->
 <!--            <td><a href="/apartments?id=1"> Read </a></td>-->
-            <td><span th:text="@{/apartment/create}"> Update </span></td>
+            <td><a th:href="@{/apartments/create(id = ${apartment.id})}"> Update </a></td>
             <td><span th:text="@{/apartment/create}"> Delete </span></td>
         </tr>
         </tbody>

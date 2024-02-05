@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import pl.kowalczyk.maciej.spring.learn.service.ApartmentService;
 import pl.kowalczyk.maciej.spring.learn.web.model.ApartmentModel;
 
@@ -47,12 +48,17 @@ public class ApartmentController {
     }
 
     @GetMapping(value = "/create")
-    public String createView(ModelMap modelMap) {
-        LOGGER.info("createView()");
+    public String createView(@RequestParam(value = "id", required = false) Long id, ModelMap modelMap) {
+        LOGGER.info("createView(" + id + ")");
 
-        modelMap.addAttribute("apartmentModel", new ApartmentModel());
+        if (id == null) {
+            modelMap.addAttribute("apartmentModel", new ApartmentModel());
+        } else {
+            ApartmentModel apartmentModel = apartmentService.read(id);
+            modelMap.addAttribute("apartmentModel", apartmentModel);
+        }
 
-        LOGGER.info("createView(...) = " + null);
+        LOGGER.info("createView(...) = " + id);
         return "create-apartment.html";
     }
 
@@ -83,6 +89,18 @@ public class ApartmentController {
         String result = "apartment.html";
 
         LOGGER.info("read(...) = " + result);
+        return result;
+    }
+
+    @PostMapping(value = "/{id}")
+    public String update(ApartmentModel apartmentModel) {
+        LOGGER.info("update(" + apartmentModel + ")");
+
+        apartmentService.update(apartmentModel);
+
+        String result = "redirect:/apartments";
+
+        LOGGER.info("update(...) = " + result);
         return result;
     }
 }
