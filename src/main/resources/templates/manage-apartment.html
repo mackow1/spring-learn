@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create or edit apartment</title>
+</head>
+<body>
+<div th:if="${read}"><p>Create apartment</p></div>
+<div th:unless="${read}"><p>Update apartment</p></div>
+<div>
+    <div>Apartment data</div>
+    <div>
+        <!--        <div th:if="${read}">-->
+        <!--            <form action="#" th:action="@{/apartments}" th:object="${apartmentModel}" method="post">-->
+        <!--        </div>-->
+        <!--        <div th:unless="${read}">-->
+        <!--            <form action="#" th:action="@{/apartments/{id}(id = ${apartmentModel.id})}" th:object="${apartmentModel}" method="post">-->
+        <!--        </div>-->
+
+        <!--        th:action="${action} == 'Save' ? @{/manageCategory/addEditCategory/addCategory} : @{/manageCategory/addEditCategory/editCategory}" th:object="${addCategoryDTO}" method="POST"-->
+        <!--            is read: <div th:text="${read}"></div>-->
+
+        <form action="#" th:action="${read} == true ? @{/apartments} : @{/apartments/{id}(id = ${apartmentModel.id})}"
+              th:object="${apartmentModel}" method="post">
+            <input type="hidden" th:field="*{id}"/>
+            <div>
+                <!--                apartment name: <input id="name" name="name">-->
+                apartment name: <input th:field="${apartmentModel.name}">
+                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</span>
+            </div>
+            <div>
+                <!--                apartment price: <input id="price" name="price">-->
+                <!--                apartment price: <input th:field="${apartmentModel.price}">-->
+                apartment price: <input th:field="*{price}">
+                <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Price Error</span>
+            </div>
+            <div th:if="${read}">
+                <button type="submit">Save</button>
+            </div>
+            <div th:unless="${read}">
+                <button type="submit">Update</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

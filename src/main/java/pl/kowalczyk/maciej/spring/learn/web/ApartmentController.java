@@ -51,15 +51,18 @@ public class ApartmentController {
     public String createView(@RequestParam(value = "id", required = false) Long id, ModelMap modelMap) {
         LOGGER.info("createView(" + id + ")");
 
-        if (id == null) {
-            modelMap.addAttribute("apartmentModel", new ApartmentModel());
-        } else {
-            ApartmentModel apartmentModel = apartmentService.read(id);
-            modelMap.addAttribute("apartmentModel", apartmentModel);
-        }
+        modelMap.addAttribute("read", true);
+        modelMap.addAttribute("apartmentModel", new ApartmentModel());
+
+//        if (id == null) {
+//            modelMap.addAttribute("apartmentModel", new ApartmentModel());
+//        } else {
+//            ApartmentModel apartmentModel = apartmentService.read(id);
+//            modelMap.addAttribute("apartmentModel", apartmentModel);
+//        }
 
         LOGGER.info("createView(...) = " + id);
-        return "create-apartment.html";
+        return "manage-apartment.html";
     }
 
     @PostMapping
@@ -69,7 +72,7 @@ public class ApartmentController {
 
         if (bindingResult.hasErrors()) {
             LOGGER.log(Level.SEVERE, "form error: " + bindingResult.getAllErrors());
-            return "create-apartment.html";
+            return "manage-apartment.html";
         }
 
         apartmentService.create(apartmentModel);
@@ -83,13 +86,26 @@ public class ApartmentController {
     public String read(@PathVariable Long id, ModelMap modelMap) {
         LOGGER.info("read(" + id + ")");
 
-        ApartmentModel apartmentModel = apartmentService.read(id);
-        modelMap.addAttribute("apartment", apartmentModel);
+        ApartmentModel readApartmentModel = apartmentService.read(id);
+        modelMap.addAttribute("apartmentModel", readApartmentModel);
 
-        String result = "apartment.html";
+        String result = "manage-apartment.html";
 
         LOGGER.info("read(...) = " + result);
         return result;
+    }
+
+    @GetMapping(value = "/update/{id}")
+    public String updateView(@PathVariable Long id, ModelMap modelMap) {
+        LOGGER.info("updateView(" + id + ")");
+
+        ApartmentModel readApartmentModel = apartmentService.read(id);
+
+        modelMap.addAttribute("read", false);
+        modelMap.addAttribute("apartmentModel", readApartmentModel);
+
+        LOGGER.info("updateView(...) = ");
+        return "manage-apartment.html";
     }
 
     @PostMapping(value = "/{id}")
