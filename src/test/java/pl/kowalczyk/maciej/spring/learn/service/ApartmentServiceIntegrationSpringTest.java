@@ -5,6 +5,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import pl.kowalczyk.maciej.spring.learn.api.exception.ApartmentCreateException;
+import pl.kowalczyk.maciej.spring.learn.api.exception.ApartmentDeleteException;
+import pl.kowalczyk.maciej.spring.learn.api.exception.ApartmentReadException;
+import pl.kowalczyk.maciej.spring.learn.api.exception.ApartmentUpdateException;
 import pl.kowalczyk.maciej.spring.learn.web.model.ApartmentModel;
 
 @SpringBootTest
@@ -15,7 +19,7 @@ class ApartmentServiceIntegrationSpringTest {
     private ApartmentService apartmentService;
 
     @Test
-    void read() {
+    void read() throws ApartmentCreateException, ApartmentReadException {
         // given
         ApartmentModel apartmentModel = new ApartmentModel();
         apartmentModel.setName("Mieszkanie");
@@ -30,7 +34,7 @@ class ApartmentServiceIntegrationSpringTest {
     }
 
     @Test
-    void update() {
+    void update() throws ApartmentCreateException, ApartmentReadException, ApartmentUpdateException {
         // given
         ApartmentModel apartmentModel = new ApartmentModel();
         apartmentModel.setName("ServiceUpdateIntegrationTest");
@@ -54,7 +58,7 @@ class ApartmentServiceIntegrationSpringTest {
     }
 
     @Test
-    void delete() {
+    void delete() throws ApartmentCreateException, ApartmentDeleteException {
         // given
         ApartmentModel apartmentModel = new ApartmentModel();
         apartmentModel.setName("ServiceDeleteIntegrationTest");

@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import pl.kowalczyk.maciej.spring.learn.api.exception.ApartmentCreateException;
 import pl.kowalczyk.maciej.spring.learn.web.model.ApartmentModel;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,7 +16,7 @@ class ApartmentServiceSpringTest {
     private ApartmentService apartmentService;
 
     @Test
-    void create() {
+    void create() throws ApartmentCreateException {
         // given
         ApartmentModel apartmentModel = new ApartmentModel();
         apartmentModel.setName("Apartemnt");

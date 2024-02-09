@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import pl.kowalczyk.maciej.spring.learn.api.exception.ApartmentException;
 import pl.kowalczyk.maciej.spring.learn.service.ApartmentService;
 import pl.kowalczyk.maciej.spring.learn.web.model.ApartmentModel;
 
@@ -54,20 +55,13 @@ public class ApartmentController {
         modelMap.addAttribute("read", true);
         modelMap.addAttribute("apartmentModel", new ApartmentModel());
 
-//        if (id == null) {
-//            modelMap.addAttribute("apartmentModel", new ApartmentModel());
-//        } else {
-//            ApartmentModel apartmentModel = apartmentService.read(id);
-//            modelMap.addAttribute("apartmentModel", apartmentModel);
-//        }
-
         LOGGER.info("createView(...) = " + id);
         return "manage-apartment.html";
     }
 
     @PostMapping
     public String create(
-            @Valid ApartmentModel apartmentModel, BindingResult bindingResult) {
+            @Valid ApartmentModel apartmentModel, BindingResult bindingResult) throws ApartmentException {
         LOGGER.info("create(" + apartmentModel + ")");
 
         if (bindingResult.hasErrors()) {
@@ -83,7 +77,7 @@ public class ApartmentController {
     }
 
     @GetMapping(value = "/{id}")
-    public String read(@PathVariable Long id, ModelMap modelMap) {
+    public String read(@PathVariable Long id, ModelMap modelMap) throws ApartmentException {
         LOGGER.info("read(" + id + ")");
 
         ApartmentModel readApartmentModel = apartmentService.read(id);
@@ -91,12 +85,12 @@ public class ApartmentController {
 
         String result = "details-apartment.html";
 
-        LOGGER.info("read(...) = " + result);
-        return result;
+        LOGGER.info("read(...) = " + null);
+        return "result";
     }
 
     @GetMapping(value = "/update/{id}")
-    public String updateView(@PathVariable Long id, ModelMap modelMap) {
+    public String updateView(@PathVariable Long id, ModelMap modelMap) throws ApartmentException {
         LOGGER.info("updateView(" + id + ")");
 
         ApartmentModel readApartmentModel = apartmentService.read(id);
@@ -109,7 +103,7 @@ public class ApartmentController {
     }
 
     @PostMapping(value = "/{id}")
-    public String update(ApartmentModel apartmentModel) {
+    public String update(ApartmentModel apartmentModel) throws ApartmentException {
         LOGGER.info("update(" + apartmentModel + ")");
 
         apartmentService.update(apartmentModel);
@@ -121,7 +115,7 @@ public class ApartmentController {
     }
 
     @GetMapping(value = "/delete/{id}")
-    public String delete(@PathVariable Long id) {
+    public String delete(@PathVariable Long id) throws ApartmentException {
         LOGGER.info("delete(" + id + ")");
 
         apartmentService.delete(id);

@@ -45,3 +45,11 @@ public class SpringLearnApplication {
 // TODO: 30.01.2024 Napisać testy jednostkowe MVC dla wszystkich metod CRUD w ApartmentController
 
 // TODO: 06.02.2024 https://spring.io/blog/2013/11/01/exception-handling-in-spring-mvc
+
+// TODO: 09.02.2024 Stworzyć własne wyjątki i dodać ich propagację od warstwy repository
+
+// TODO: 09.02.2024 Dodać do każdej metody crud w teście weryfikację że zgłasza wyjątek
+
+// TODO: 09.02.2024 Zrobić obsługę wyjątków w service dla metod z repository dla modelu Apartment
+
+// TODO: 09.02.2024 Wybrać inny model i stworzyć własne wyjątki biznesowe dla globalnej obsługi wyjątków
