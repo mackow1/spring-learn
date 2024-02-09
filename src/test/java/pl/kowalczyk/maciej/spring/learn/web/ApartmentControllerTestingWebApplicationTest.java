@@ -6,19 +6,21 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import pl.kowalczyk.maciej.spring.learn.service.ApartmentService;
 import pl.kowalczyk.maciej.spring.learn.web.model.ApartmentModel;
 
 import java.util.Map;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -31,6 +33,9 @@ class ApartmentControllerTestingWebApplicationTest {
     @Autowired
     private MockMvc mockMvc;
 
+    @MockBean
+    private ApartmentService apartmentService;
+
     @Test
     void createView() throws Exception {
         // given
@@ -41,7 +46,7 @@ class ApartmentControllerTestingWebApplicationTest {
 
         // then
         resultActions
-                .andDo(MockMvcResultHandlers.print())
+                .andDo(print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().string(containsString(LIST_OF_APARTMENTS_HTML_TEXT)));
 
@@ -74,4 +79,24 @@ class ApartmentControllerTestingWebApplicationTest {
         // then
 
     }
+
+//    @Test
+//    void read() throws Exception {
+//        // given
+//        ApartmentModel apartmentModel = new ApartmentModel(); // Set up your model
+//        apartmentModel.setId(1L);
+//        apartmentModel.setName("TestingWebApplicationApartment");
+//        apartmentModel.setPrice(9090);
+//
+//        given(apartmentService.read(1L)).returns(apartmentModel, );
+//
+//        // when
+//        this.mockMvc.perform(MockMvcRequestBuilders.get("/apartment"))
+//                .andDo(print())
+//                .andExpect(status().isOk())
+//                .andExpect(content().string(containsString("")));
+//
+//        // then
+//
+//    }
 }

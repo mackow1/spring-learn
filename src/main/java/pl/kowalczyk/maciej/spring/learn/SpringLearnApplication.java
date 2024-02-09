@@ -43,3 +43,5 @@ public class SpringLearnApplication {
 // TODO: 30.01.2024 Internacjonalizacja stringów za pomocą ResourceBundle w Spring
 
 // TODO: 30.01.2024 Napisać testy jednostkowe MVC dla wszystkich metod CRUD w ApartmentController
+
+// TODO: 06.02.2024 https://spring.io/blog/2013/11/01/exception-handling-in-spring-mvc
