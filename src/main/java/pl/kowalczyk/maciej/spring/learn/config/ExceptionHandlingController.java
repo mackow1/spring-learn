@@ -1,5 +1,6 @@
 package pl.kowalczyk.maciej.spring.learn.config;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -24,8 +25,10 @@ public class ExceptionHandlingController {
         return null;
     }
 
-    @ExceptionHandler(value = Exception.class)
+    @ExceptionHandler(value = EntityNotFoundException.class)
     public ModelAndView defaultErrorHandler(HttpServletRequest req, Exception e) throws Exception {
+        LOGGER.info("defaultErrorHandler(" + req + ", " + e + ")");
+
         // If the exception is annotated with @ResponseStatus rethrow it and let
         // the framework handle it - like the OrderNotFoundException example
         // at the start of this post.
@@ -39,6 +42,8 @@ public class ExceptionHandlingController {
         mav.addObject("exception", e);
         mav.addObject("url", req.getRequestURL());
         mav.setViewName(DEFAULT_ERROR_VIEW);
+
+        LOGGER.info("defaultErrorHandler(...) = " + mav);
         return mav;
     }
 }

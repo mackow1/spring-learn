@@ -1,5 +1,6 @@
 package pl.kowalczyk.maciej.spring.learn.web;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -98,7 +99,7 @@ public class ApartmentController {
     }
 
     @GetMapping(value = "/update/{id}")
-    public String updateView(@PathVariable Long id, ModelMap modelMap) {
+    public String updateView(@PathVariable Long id, ModelMap modelMap) throws EntityNotFoundException {
         LOGGER.info("updateView(" + id + ")");
 
         ApartmentModel readApartmentModel = apartmentService.read(id);

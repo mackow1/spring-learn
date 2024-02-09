@@ -50,11 +50,12 @@ public class ApartmentService {
         return convertedApartmentModel;
     }
 
-    public ApartmentModel read(Long id) {
+    public ApartmentModel read(Long id) throws EntityNotFoundException {
         LOGGER.info("read(" + id + ")");
 
         Optional<ApartmentEntity> optionalApartmentEntity = apartmentRepository.findById(id);
-        ApartmentEntity apartmentEntity = optionalApartmentEntity.orElseThrow(EntityNotFoundException::new);
+        ApartmentEntity apartmentEntity = optionalApartmentEntity.orElseThrow(
+                () -> new EntityNotFoundException("Apartment not found for given id: " + id));
         ApartmentModel readApartmentModel = apartmentMapper.from(apartmentEntity);
 
         LOGGER.info("read(...) = " + readApartmentModel);
