@@ -83,16 +83,18 @@ public class ApartmentController {
     }
 
     @GetMapping(value = "/{id}")
-    public String read(@PathVariable Long id, ModelMap modelMap) {
+    public String read(@PathVariable Long id, ModelMap modelMap) throws Exception {
         LOGGER.info("read(" + id + ")");
 
-        ApartmentModel readApartmentModel = apartmentService.read(id);
-        modelMap.addAttribute("apartmentModel", readApartmentModel);
+        throw new Exception("Apartment read exception");
 
-        String result = "details-apartment.html";
+//        ApartmentModel readApartmentModel = apartmentService.read(id);
+//        modelMap.addAttribute("apartmentModel", readApartmentModel);
 
-        LOGGER.info("read(...) = " + result);
-        return result;
+//        String result = "details-apartment.html";
+
+//        LOGGER.info("read(...) = " + null);
+//        return "result";
     }
 
     @GetMapping(value = "/update/{id}")
