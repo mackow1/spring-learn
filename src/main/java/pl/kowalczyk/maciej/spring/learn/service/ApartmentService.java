@@ -1,7 +1,10 @@
 package pl.kowalczyk.maciej.spring.learn.service;
 
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
+import pl.kowalczyk.maciej.spring.learn.api.exception.ApartmentCreateException;
+import pl.kowalczyk.maciej.spring.learn.api.exception.ApartmentDeleteException;
+import pl.kowalczyk.maciej.spring.learn.api.exception.ApartmentReadException;
+import pl.kowalczyk.maciej.spring.learn.api.exception.ApartmentUpdateException;
 import pl.kowalczyk.maciej.spring.learn.repository.ApartmentRepository;
 import pl.kowalczyk.maciej.spring.learn.repository.entity.ApartmentEntity;
 import pl.kowalczyk.maciej.spring.learn.service.mapper.ApartmentMapper;
@@ -35,7 +38,7 @@ public class ApartmentService {
         return apartmentModels;
     }
 
-    public ApartmentModel create(ApartmentModel apartmentModel) {
+    public ApartmentModel create(ApartmentModel apartmentModel) throws ApartmentCreateException {
         LOGGER.info("create(" + apartmentModel + ")");
 
         ApartmentEntity apartmentEntity = apartmentMapper.from(apartmentModel);
@@ -50,19 +53,19 @@ public class ApartmentService {
         return convertedApartmentModel;
     }
 
-    public ApartmentModel read(Long id) throws EntityNotFoundException {
+    public ApartmentModel read(Long id) throws ApartmentReadException {
         LOGGER.info("read(" + id + ")");
 
         Optional<ApartmentEntity> optionalApartmentEntity = apartmentRepository.findById(id);
         ApartmentEntity apartmentEntity = optionalApartmentEntity.orElseThrow(
-                () -> new EntityNotFoundException("Apartment not found for given id: " + id));
+                () -> new ApartmentReadException("Apartment not found for given id: " + id));
         ApartmentModel readApartmentModel = apartmentMapper.from(apartmentEntity);
 
         LOGGER.info("read(...) = " + readApartmentModel);
         return readApartmentModel;
     }
 
-    public ApartmentModel update(ApartmentModel apartmentModel) {
+    public ApartmentModel update(ApartmentModel apartmentModel) throws ApartmentUpdateException {
         LOGGER.info("update()");
 
         ApartmentEntity apartmentEntity = apartmentMapper.from(apartmentModel);
@@ -73,7 +76,7 @@ public class ApartmentService {
         return updatedApartmentModel;
     }
 
-    public void delete(Long id) {
+    public void delete(Long id) throws ApartmentDeleteException {
         LOGGER.info("delete()");
 
         apartmentRepository.deleteById(id);

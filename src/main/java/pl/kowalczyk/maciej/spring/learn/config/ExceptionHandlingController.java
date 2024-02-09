@@ -1,12 +1,12 @@
 package pl.kowalczyk.maciej.spring.learn.config;
 
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
+import pl.kowalczyk.maciej.spring.learn.api.exception.ApartmentException;
 
 import java.util.logging.Logger;
 
@@ -25,9 +25,9 @@ public class ExceptionHandlingController {
         return null;
     }
 
-    @ExceptionHandler(value = EntityNotFoundException.class)
-    public ModelAndView defaultErrorHandler(HttpServletRequest req, Exception e) throws Exception {
-        LOGGER.info("defaultErrorHandler(" + req + ", " + e + ")");
+    @ExceptionHandler(value = ApartmentException.class)
+    public ModelAndView apartmentErrorHandler(HttpServletRequest req, Exception e) throws Exception {
+        LOGGER.info("apartmentErrorHandler(" + req + ", " + e + ")");
 
         // If the exception is annotated with @ResponseStatus rethrow it and let
         // the framework handle it - like the OrderNotFoundException example
@@ -43,7 +43,7 @@ public class ExceptionHandlingController {
         mav.addObject("url", req.getRequestURL());
         mav.setViewName(DEFAULT_ERROR_VIEW);
 
-        LOGGER.info("defaultErrorHandler(...) = " + mav);
+        LOGGER.info("apartmentErrorHandler(...) = " + mav);
         return mav;
     }
 }
