@@ -89,7 +89,7 @@ public class ApartmentController {
         ApartmentModel readApartmentModel = apartmentService.read(id);
         modelMap.addAttribute("apartmentModel", readApartmentModel);
 
-        String result = "manage-apartment.html";
+        String result = "details-apartment.html";
 
         LOGGER.info("read(...) = " + result);
         return result;

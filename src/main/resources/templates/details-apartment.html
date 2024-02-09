@@ -9,10 +9,7 @@
 <div th:unless="${read}"><p>Update apartment</p></div>
 <div>
     <div>Apartment data</div>
-    <form action="#" th:action="${read} == true ? @{/apartments} : @{/apartments/{id}(id = ${apartmentModel.id})}"
-          th:object="${apartmentModel}" method="post">
-        <div th:replace="fragments/apartment :: details"></div>
-    </form>
+    <div th:replace="fragments/apartment :: details (read = ${read})"></div>
 </div>
 </body>
 </html>
