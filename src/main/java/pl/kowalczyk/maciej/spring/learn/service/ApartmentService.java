@@ -21,7 +21,6 @@ public class ApartmentService {
 
     private final ApartmentRepository apartmentRepository;
     private final ApartmentMapper apartmentMapper;
-//    private final ModelMapper modelMapper;
 
     public ApartmentService(ApartmentRepository apartmentRepository, ApartmentMapper apartmentMapper) {
         this.apartmentRepository = apartmentRepository;
@@ -44,10 +43,6 @@ public class ApartmentService {
         ApartmentEntity apartmentEntity = apartmentMapper.from(apartmentModel);
         ApartmentEntity savedApartmentEntity = apartmentRepository.save(apartmentEntity);
         ApartmentModel convertedApartmentModel = apartmentMapper.from(savedApartmentEntity);
-
-//        ApartmentEntity apartmentEntity = modelMapper.map(apartmentModel, ApartmentEntity.class);
-//        ApartmentEntity savedApartmentEntity = apartmentRepository.save(apartmentEntity);
-//        ApartmentModel convertedApartmentModel = modelMapper.map(savedApartmentEntity, ApartmentModel.class);
 
         LOGGER.info("create(...) = " + convertedApartmentModel);
         return convertedApartmentModel;
