@@ -7,5 +7,30 @@
 <body>
 <h1>List of authors</h1>
 <div th:text="${authors}"></div>
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th> First Name </th>
+            <th> Last Name </th>
+            <th> Read </th>
+            <th> Update </th>
+            <th> Delete </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${authors.empty}">
+            <td colspan="2"> No Apartments Available </td>
+        </tr>
+        <tr th:each="author : ${authors}">
+            <td><span th:text="${author.firstName}"> First Name </span></td>
+            <td><span th:text="${author.lastName}"> Last Name </span></td>
+            <td><a th:href="@{/authors/{id}(id = ${author.id})}"> Read </a></td>
+<!--            <td><a th:href="@{/authors/update/{id}(id = ${author.id})}"> Update </a></td>-->
+<!--            <td><a th:href="@{/authors/delete/{id}(id = ${author.id})}"> Delete </a></td>-->
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
