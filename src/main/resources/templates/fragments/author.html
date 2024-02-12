@@ -8,11 +8,11 @@
 <div th:fragment="details">
   <div>
     <div>
-      author first name: <input th:field="${authorModel.name}">
-      <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{lastName}">First Name Error</span>
+      author first name: <input th:field="${authorModel.firstName}">
+      <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First Name Error</span>
     </div>
     <div>
-      author last name: <input th:field="*{lastName}">
+      author last name: <input th:field="${authorModel.lastName}">
       <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last Name Error</span>
     </div>
     <div th:if="${read}">
