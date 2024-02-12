@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
-import pl.kowalczyk.maciej.spring.learn.api.exception.ApartmentException;
+import pl.kowalczyk.maciej.spring.learn.api.exception.apartment.ApartmentException;
 
 import java.util.logging.Logger;
 

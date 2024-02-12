@@ -5,10 +5,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import pl.kowalczyk.maciej.spring.learn.api.exception.ApartmentCreateException;
-import pl.kowalczyk.maciej.spring.learn.api.exception.ApartmentDeleteException;
-import pl.kowalczyk.maciej.spring.learn.api.exception.ApartmentReadException;
-import pl.kowalczyk.maciej.spring.learn.api.exception.ApartmentUpdateException;
+import pl.kowalczyk.maciej.spring.learn.api.exception.apartment.ApartmentCreateException;
+import pl.kowalczyk.maciej.spring.learn.api.exception.apartment.ApartmentDeleteException;
+import pl.kowalczyk.maciej.spring.learn.api.exception.apartment.ApartmentReadException;
+import pl.kowalczyk.maciej.spring.learn.api.exception.apartment.ApartmentUpdateException;
 import pl.kowalczyk.maciej.spring.learn.web.model.ApartmentModel;
 
 @SpringBootTest
