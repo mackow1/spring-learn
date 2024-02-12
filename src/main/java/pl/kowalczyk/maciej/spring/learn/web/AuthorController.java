@@ -89,7 +89,7 @@ public class AuthorController {
         modelMap.addAttribute("read", false);
         modelMap.addAttribute("authorModel", readAuthorModel);
 
-        String result = "manage-apartment.html";
+        String result = "manage-author.html";
 
         LOGGER.info("updateView(...) = " + result);
         return result;
