@@ -1,7 +1,10 @@
 package pl.kowalczyk.maciej.spring.learn.service;
 
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 import pl.kowalczyk.maciej.spring.learn.api.exception.author.AuthorReadException;
+import pl.kowalczyk.maciej.spring.learn.api.exception.author.AuthorUpdateException;
 import pl.kowalczyk.maciej.spring.learn.repository.AuthorRepository;
 import pl.kowalczyk.maciej.spring.learn.repository.entity.AuthorEntity;
 import pl.kowalczyk.maciej.spring.learn.service.mapper.AuthorMapper;
@@ -65,5 +68,27 @@ public class AuthorService {
 
         LOGGER.info("read(...) = " + authorModel);
         return authorModel;
+    }
+
+    public AuthorModel update(AuthorModel authorModel) throws AuthorUpdateException {
+        LOGGER.info("update(" + authorModel + ")");
+
+        AuthorEntity authorEntity = authorMapper.from(authorModel);
+        AuthorEntity updatedAuthorEntity;
+
+        try {
+            updatedAuthorEntity = authorRepository.save(authorEntity);
+        } catch (DataIntegrityViolationException e) {
+            LOGGER.log(Level.SEVERE, "Data integrity violation when updating author: " + authorEntity, e);
+            throw new AuthorUpdateException("Data integrity violation for author update.");
+        } catch (OptimisticLockingFailureException e) {
+            LOGGER.log(Level.SEVERE, "Optimistic locking failure for author: " + authorEntity, e);
+            throw new AuthorUpdateException("Author has already been updated by another transaction.");
+        }
+
+        AuthorModel result = authorMapper.from(updatedAuthorEntity);
+
+        LOGGER.info("update(...) = " + result);
+        return result;
     }
 }

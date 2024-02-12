@@ -80,4 +80,30 @@ public class AuthorController {
         LOGGER.info("read(...) = " + result);
         return result;
     }
+
+    @GetMapping(value = "/update/{id}")
+    public String updateView(@PathVariable Long id, ModelMap modelMap) throws AuthorException {
+        LOGGER.info("updateView(" + id + ")");
+
+        AuthorModel readAuthorModel = authorService.read(id);
+        modelMap.addAttribute("read", false);
+        modelMap.addAttribute("authorModel", readAuthorModel);
+
+        String result = "manage-apartment.html";
+
+        LOGGER.info("updateView(...) = " + result);
+        return result;
+    }
+
+    @PostMapping(value = "/{id}")
+    public String update(AuthorModel authorModel) throws AuthorException {
+        LOGGER.info("update(" + authorModel + ")");
+
+        authorService.update(authorModel);
+
+        String result = "redirect:/authors";
+
+        LOGGER.info("update(...) = " + result);
+        return result;
+    }
 }
