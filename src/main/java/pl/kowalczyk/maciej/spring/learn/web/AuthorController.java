@@ -6,8 +6,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pl.kowalczyk.maciej.spring.learn.api.exception.author.AuthorException;
 import pl.kowalczyk.maciej.spring.learn.service.AuthorService;
 import pl.kowalczyk.maciej.spring.learn.web.model.AuthorModel;
 
@@ -67,13 +69,13 @@ public class AuthorController {
     }
 
     @GetMapping(value = "/{id}")
-    public String read(Long id, ModelMap modelMap) throws Exception {
+    public String read(@PathVariable Long id, ModelMap modelMap) throws AuthorException {
         LOGGER.info("read(" + id + ")");
 
-        AuthorModel authorModel = authorService.read(id);
-        modelMap.addAttribute("authorModel", authorModel);
+        AuthorModel readAuthorModel = authorService.read(id);
+        modelMap.addAttribute("authorModel", readAuthorModel);
 
-        String result = null;
+        String result = "manage-author.html";
 
         LOGGER.info("read(...) = " + result);
         return result;
