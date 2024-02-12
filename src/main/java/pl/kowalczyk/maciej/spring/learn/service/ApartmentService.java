@@ -96,7 +96,7 @@ public class ApartmentService {
     }
 
     public ApartmentModel update(ApartmentModel apartmentModel) throws ApartmentUpdateException {
-        LOGGER.info("update()");
+        LOGGER.info("update(" + apartmentModel + ")");
 
 //        Sposób 1
 //        Objects.requireNonNull(apartmentModel, "Model must not be NULL");
@@ -125,9 +125,9 @@ public class ApartmentService {
         return updatedApartmentModel;
     }
 
-//    Co lepsze? FindById -> DeleteById, czy DeleteById
+    //    Co lepsze? FindById -> DeleteById, czy DeleteById
     public void delete(Long id) throws ApartmentDeleteException {
-        LOGGER.info("delete()");
+        LOGGER.info("delete(" + id + ")");
 
 //        Sposób 1
 //        Objects.requireNonNull(id, "ID must not be NULL");
