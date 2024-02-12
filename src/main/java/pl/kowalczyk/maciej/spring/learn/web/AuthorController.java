@@ -65,4 +65,17 @@ public class AuthorController {
         LOGGER.info("create(...) = ");
         return "redirect:/authors";
     }
+
+    @GetMapping(value = "/{id}")
+    public String read(Long id, ModelMap modelMap) throws Exception {
+        LOGGER.info("read(" + id + ")");
+
+        AuthorModel authorModel = authorService.read(id);
+        modelMap.addAttribute("authorModel", authorModel);
+
+        String result = null;
+
+        LOGGER.info("read(...) = " + result);
+        return result;
+    }
 }
