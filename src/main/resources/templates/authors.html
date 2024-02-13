@@ -27,7 +27,7 @@
             <td><span th:text="${author.lastName}"> Last Name </span></td>
             <td><a th:href="@{/authors/{id}(id = ${author.id})}"> Read </a></td>
             <td><a th:href="@{/authors/update/{id}(id = ${author.id})}"> Update </a></td>
-<!--            <td><a th:href="@{/authors/delete/{id}(id = ${author.id})}"> Delete </a></td>-->
+            <td><a th:href="@{/authors/delete/{id}(id = ${author.id})}"> Delete </a></td>
         </tr>
         </tbody>
     </table>

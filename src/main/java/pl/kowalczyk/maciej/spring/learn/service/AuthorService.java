@@ -1,8 +1,10 @@
 package pl.kowalczyk.maciej.spring.learn.service;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
+import pl.kowalczyk.maciej.spring.learn.api.exception.author.AuthorDeleteException;
 import pl.kowalczyk.maciej.spring.learn.api.exception.author.AuthorReadException;
 import pl.kowalczyk.maciej.spring.learn.api.exception.author.AuthorUpdateException;
 import pl.kowalczyk.maciej.spring.learn.repository.AuthorRepository;
@@ -90,5 +92,22 @@ public class AuthorService {
 
         LOGGER.info("update(...) = " + result);
         return result;
+    }
+
+    public void delete(Long id) throws AuthorDeleteException {
+        LOGGER.info("delete(" + id + ")");
+
+        if (id == null) {
+            throw new AuthorDeleteException("ID must not be null");
+        }
+
+        try {
+            authorRepository.deleteById(id);
+        } catch (DataAccessException e) {
+            LOGGER.log(Level.SEVERE, "Database access error while deleting apartment with ID: " + id, e);
+            throw new AuthorDeleteException("error while deleting apartment with ID: " + id);
+        }
+
+        LOGGER.info("delete(...) = ");
     }
 }

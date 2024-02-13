@@ -106,4 +106,15 @@ public class AuthorController {
         LOGGER.info("update(...) = " + result);
         return result;
     }
+
+    @GetMapping(value = "/delete/{id}")
+    public String delete(@PathVariable Long id) throws AuthorException {
+        LOGGER.info("delete()");
+
+        authorService.delete(id);
+        String result = "redirect:/authors";
+
+        LOGGER.info("delete(...) = " + result);
+        return result;
+    }
 }
