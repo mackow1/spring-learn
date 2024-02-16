@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.annotation.Rollback;
-import pl.kowalczyk.maciej.spring.learn.api.exception.ApartmentCreateException;
+import pl.kowalczyk.maciej.spring.learn.api.exception.apartment.ApartmentCreateException;
 import pl.kowalczyk.maciej.spring.learn.web.model.ApartmentModel;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -37,7 +37,6 @@ class ApartmentServiceSpringTest {
     }
 
 
-    // Mockowanie?
     @Test
     @Transactional
     @Rollback

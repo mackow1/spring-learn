@@ -6,8 +6,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pl.kowalczyk.maciej.spring.learn.api.exception.author.AuthorException;
 import pl.kowalczyk.maciej.spring.learn.service.AuthorService;
 import pl.kowalczyk.maciej.spring.learn.web.model.AuthorModel;
 
@@ -64,5 +66,55 @@ public class AuthorController {
 
         LOGGER.info("create(...) = ");
         return "redirect:/authors";
+    }
+
+    @GetMapping(value = "/{id}")
+    public String read(@PathVariable Long id, ModelMap modelMap) throws AuthorException {
+        LOGGER.info("read(" + id + ")");
+
+        AuthorModel readAuthorModel = authorService.read(id);
+        modelMap.addAttribute("authorModel", readAuthorModel);
+
+        String result = "manage-author.html";
+
+        LOGGER.info("read(...) = " + result);
+        return result;
+    }
+
+    @GetMapping(value = "/update/{id}")
+    public String updateView(@PathVariable Long id, ModelMap modelMap) throws AuthorException {
+        LOGGER.info("updateView(" + id + ")");
+
+        AuthorModel readAuthorModel = authorService.read(id);
+        modelMap.addAttribute("read", false);
+        modelMap.addAttribute("authorModel", readAuthorModel);
+
+        String result = "manage-author.html";
+
+        LOGGER.info("updateView(...) = " + result);
+        return result;
+    }
+
+    @PostMapping(value = "/{id}")
+    public String update(AuthorModel authorModel) throws AuthorException {
+        LOGGER.info("update(" + authorModel + ")");
+
+        authorService.update(authorModel);
+
+        String result = "redirect:/authors";
+
+        LOGGER.info("update(...) = " + result);
+        return result;
+    }
+
+    @GetMapping(value = "/delete/{id}")
+    public String delete(@PathVariable Long id) throws AuthorException {
+        LOGGER.info("delete()");
+
+        authorService.delete(id);
+        String result = "redirect:/authors";
+
+        LOGGER.info("delete(...) = " + result);
+        return result;
     }
 }

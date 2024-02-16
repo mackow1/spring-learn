@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create or edit author</title>
+</head>
+<body>
+<div th:if="${read}"><p>Create author</p></div>
+<div th:unless="${read}"><p>Update author</p></div>
+<div>
+    <div>Author data</div>
+    <form action="#" th:action="${read} == true ? @{/authors} : @{/authors/{id}(id = ${authorModel.id})}"
+          th:object="${authorModel}" method="post">
+        <div th:replace="fragments/author :: details"></div>
+    </form>
+</div>
+</body>
+</html>

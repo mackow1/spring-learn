@@ -4,6 +4,8 @@ import jakarta.validation.constraints.NotEmpty;
 
 public class AuthorModel {
 
+    private Long id;
+
     @NotEmpty(message = "{not.empty.message}")
     private String firstName;
 
@@ -13,9 +15,18 @@ public class AuthorModel {
     public AuthorModel() {
     }
 
-    public AuthorModel(String firstName, String lastName) {
+    public AuthorModel(Long id, String firstName, String lastName) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -37,7 +48,8 @@ public class AuthorModel {
     @Override
     public String toString() {
         return "AuthorModel{" +
-                "firstName='" + firstName + '\'' +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 '}';
     }

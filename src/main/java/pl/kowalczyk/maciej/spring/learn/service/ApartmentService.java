@@ -4,10 +4,10 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
-import pl.kowalczyk.maciej.spring.learn.api.exception.ApartmentCreateException;
-import pl.kowalczyk.maciej.spring.learn.api.exception.ApartmentDeleteException;
-import pl.kowalczyk.maciej.spring.learn.api.exception.ApartmentReadException;
-import pl.kowalczyk.maciej.spring.learn.api.exception.ApartmentUpdateException;
+import pl.kowalczyk.maciej.spring.learn.api.exception.apartment.ApartmentCreateException;
+import pl.kowalczyk.maciej.spring.learn.api.exception.apartment.ApartmentDeleteException;
+import pl.kowalczyk.maciej.spring.learn.api.exception.apartment.ApartmentReadException;
+import pl.kowalczyk.maciej.spring.learn.api.exception.apartment.ApartmentUpdateException;
 import pl.kowalczyk.maciej.spring.learn.repository.ApartmentRepository;
 import pl.kowalczyk.maciej.spring.learn.repository.entity.ApartmentEntity;
 import pl.kowalczyk.maciej.spring.learn.service.mapper.ApartmentMapper;
@@ -52,23 +52,21 @@ public class ApartmentService {
             throw new ApartmentCreateException("Model must not be NULL");
         }
 
-        ApartmentEntity apartmentEntity = apartmentMapper.from(apartmentModel);
-        ApartmentEntity savedApartmentEntity;
-
         try {
-            savedApartmentEntity = apartmentRepository.save(apartmentEntity);
+            ApartmentEntity apartmentEntity = apartmentMapper.from(apartmentModel);
+            ApartmentEntity savedApartmentEntity = apartmentRepository.save(apartmentEntity);
+            ApartmentModel convertedApartmentModel = apartmentMapper.from(savedApartmentEntity);
+
+            LOGGER.info("create(...) = " + convertedApartmentModel);
+            return convertedApartmentModel;
         } catch (DataIntegrityViolationException e) {
-            LOGGER.log(Level.SEVERE, "Data integrity violation when saving apartment: " + apartmentEntity, e);
+            LOGGER.log(Level.SEVERE, "Data integrity violation when saving apartment", e);
             throw new ApartmentCreateException("Data integrity violation for apartment creation.");
         } catch (OptimisticLockingFailureException e) {
-            LOGGER.log(Level.SEVERE, "Optimistic locking failure for apartment: " + apartmentEntity, e);
+            LOGGER.log(Level.SEVERE, "Optimistic locking failure for apartment", e);
             throw new ApartmentCreateException("Apartment has already been saved by another transaction.");
         }
 
-        ApartmentModel convertedApartmentModel = apartmentMapper.from(savedApartmentEntity);
-
-        LOGGER.info("create(...) = " + convertedApartmentModel);
-        return convertedApartmentModel;
     }
 
     public ApartmentModel read(Long id) throws ApartmentReadException {
@@ -96,7 +94,7 @@ public class ApartmentService {
     }
 
     public ApartmentModel update(ApartmentModel apartmentModel) throws ApartmentUpdateException {
-        LOGGER.info("update()");
+        LOGGER.info("update(" + apartmentModel + ")");
 
 //        Sposób 1
 //        Objects.requireNonNull(apartmentModel, "Model must not be NULL");
@@ -125,17 +123,8 @@ public class ApartmentService {
         return updatedApartmentModel;
     }
 
-//    Co lepsze? FindById -> DeleteById, czy DeleteById
     public void delete(Long id) throws ApartmentDeleteException {
-        LOGGER.info("delete()");
-
-//        Sposób 1
-//        Objects.requireNonNull(id, "ID must not be NULL");
-
-//        Sposób 2
-        if (id == null) {
-            throw new ApartmentDeleteException("ID must not be NULL");
-        }
+        LOGGER.info("delete(" + id + ")");
 
         try {
             apartmentRepository.deleteById(id);

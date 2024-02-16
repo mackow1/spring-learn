@@ -1,4 +1,4 @@
-package pl.kowalczyk.maciej.spring.learn.api.exception;
+package pl.kowalczyk.maciej.spring.learn.api.exception.apartment;
 
 public class ApartmentUpdateException extends ApartmentException {
 

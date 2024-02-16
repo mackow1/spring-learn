@@ -1,4 +1,6 @@
-package pl.kowalczyk.maciej.spring.learn.api.exception;
+package pl.kowalczyk.maciej.spring.learn.api.exception.apartment;
+
+import pl.kowalczyk.maciej.spring.learn.api.exception.SpringLearnApplicationException;
 
 public class ApartmentException extends SpringLearnApplicationException {
 
