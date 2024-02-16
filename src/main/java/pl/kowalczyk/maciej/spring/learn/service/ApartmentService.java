@@ -52,23 +52,21 @@ public class ApartmentService {
             throw new ApartmentCreateException("Model must not be NULL");
         }
 
-        ApartmentEntity apartmentEntity = apartmentMapper.from(apartmentModel);
-        ApartmentEntity savedApartmentEntity;
-
         try {
-            savedApartmentEntity = apartmentRepository.save(apartmentEntity);
+            ApartmentEntity apartmentEntity = apartmentMapper.from(apartmentModel);
+            ApartmentEntity savedApartmentEntity = apartmentRepository.save(apartmentEntity);
+            ApartmentModel convertedApartmentModel = apartmentMapper.from(savedApartmentEntity);
+
+            LOGGER.info("create(...) = " + convertedApartmentModel);
+            return convertedApartmentModel;
         } catch (DataIntegrityViolationException e) {
-            LOGGER.log(Level.SEVERE, "Data integrity violation when saving apartment: " + apartmentEntity, e);
+            LOGGER.log(Level.SEVERE, "Data integrity violation when saving apartment", e);
             throw new ApartmentCreateException("Data integrity violation for apartment creation.");
         } catch (OptimisticLockingFailureException e) {
-            LOGGER.log(Level.SEVERE, "Optimistic locking failure for apartment: " + apartmentEntity, e);
+            LOGGER.log(Level.SEVERE, "Optimistic locking failure for apartment", e);
             throw new ApartmentCreateException("Apartment has already been saved by another transaction.");
         }
 
-        ApartmentModel convertedApartmentModel = apartmentMapper.from(savedApartmentEntity);
-
-        LOGGER.info("create(...) = " + convertedApartmentModel);
-        return convertedApartmentModel;
     }
 
     public ApartmentModel read(Long id) throws ApartmentReadException {
@@ -125,17 +123,8 @@ public class ApartmentService {
         return updatedApartmentModel;
     }
 
-    //    Co lepsze? FindById -> DeleteById, czy DeleteById
     public void delete(Long id) throws ApartmentDeleteException {
         LOGGER.info("delete(" + id + ")");
-
-//        Sposób 1
-//        Objects.requireNonNull(id, "ID must not be NULL");
-
-//        Sposób 2
-        if (id == null) {
-            throw new ApartmentDeleteException("ID must not be NULL");
-        }
 
         try {
             apartmentRepository.deleteById(id);

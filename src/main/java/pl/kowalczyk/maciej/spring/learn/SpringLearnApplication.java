@@ -53,3 +53,5 @@ public class SpringLearnApplication {
 // TODO: 09.02.2024 Zrobić obsługę wyjątków w service dla metod z repository dla modelu Apartment
 
 // TODO: 09.02.2024 Wybrać inny model i stworzyć własne wyjątki biznesowe dla globalnej obsługi wyjątków
+
+// TODO: 13.02.2024 Powielić manage-apartment.html dla innego wybranego modelu
