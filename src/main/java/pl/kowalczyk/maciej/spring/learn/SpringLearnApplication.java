@@ -59,3 +59,8 @@ public class SpringLearnApplication {
 // TODO: 20.02.2024 Dodać Bootstrapa za pomocą zależności maven
 
 // TODO: 23.02.2024 Zrealizować Mockito na własnym przykładzie
+
+// TODO: 23.02.2024 Dla wybranego controllera zrobić 3 typy testów
+
+// TODO: 23.02.2024 W UserDetailService użyć UserRepository, które należy stworzyć
+// Użyć password encoder
