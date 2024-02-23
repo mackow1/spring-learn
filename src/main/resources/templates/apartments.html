@@ -3,42 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <title>List of apartments</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}" rel="stylesheet">
 </head>
 <body>
 <h1>List of apartments</h1>
-<div th:text="${hello}"></div>
-<div th:text="${apartments}"></div>
+<!--<div th:text="${hello}"></div>-->
+<!--<div th:text="${apartments}"></div>-->
 <div class="container-fluid">
-    <table>
-        <thead>
-        <tr>
-            <th> Name </th>
-            <th> Price </th>
-            <th> Read </th>
-            <th> Update </th>
-            <th> Delete </th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:if="${apartments.empty}">
-            <td colspan="2"> No Apartments Available </td>
-        </tr>
-        <tr th:each="apartment : ${apartments}">
-            <td><span th:text="${apartment.name}"> Name </span></td>
-            <td><span th:text="${apartment.price}"> Price </span></td>
-<!--            <a th:href="@{/order/{id}/details(id=3,action='show_all')}">-->
-            <td><a th:href="@{/apartments/{id}(id = ${apartment.id})}"> Read </a></td>
-<!--            <td><a th:href="@{/apartments/__${apartment.id}__}"> Read </a></td>-->
-<!--            <td><a th:href="@{/apartments}+'?id='+${apartment.id}"> Read </a></td>-->
-<!--            <td><a href="/apartments?id=1"> Read </a></td>-->
-            <td><a th:href="@{/apartments/update/{id}(id = ${apartment.id})}"> Update </a></td>
-            <td><a th:href="@{/apartments/delete/{id}(id = ${apartment.id})}"> Delete </a></td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <table class="table table-bordered">
+                <thead class="table-light">
+                <tr>
+                    <th scope="col"> Name</th>
+                    <th scope="col"> Price</th>
+                    <th scope="col"> Read</th>
+                    <th scope="col"> Update</th>
+                    <th scope="col"> Delete</th>
+                </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                <tr th:if="${apartments.empty}">
+                    <td colspan="2"> No Apartments Available</td>
+                </tr>
+                <tr th:each="apartment : ${apartments}">
+                    <td><span th:text="${apartment.name}"> Name </span></td>
+                    <td><span th:text="${apartment.price}"> Price </span></td>
+                    <td><a th:href="@{/apartments/{id}(id = ${apartment.id})}"> Read </a></td>
+                    <td><a th:href="@{/apartments/update/{id}(id = ${apartment.id})}"> Update </a></td>
+                    <td><a th:href="@{/apartments/delete/{id}(id = ${apartment.id})}"> Delete </a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col"></div>
 </div>
 
 <div><a th:href="@{/apartments/create}"> Create </a></div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>
