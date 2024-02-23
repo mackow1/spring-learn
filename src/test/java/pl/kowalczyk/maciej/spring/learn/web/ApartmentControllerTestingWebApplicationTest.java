@@ -6,14 +6,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import pl.kowalczyk.maciej.spring.learn.service.ApartmentService;
 import pl.kowalczyk.maciej.spring.learn.web.model.ApartmentModel;
 
 import java.util.Map;
@@ -27,14 +25,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 class ApartmentControllerTestingWebApplicationTest {
 
-    public static final String APARTMENTS_URL = "/apartments";
-    public static final String LIST_OF_APARTMENTS_HTML_TEXT = "List of apartments";
+    private static final String APARTMENTS_URL = "/apartments";
+    private static final String LIST_OF_APARTMENTS_HTML_TEXT = "List of apartments";
 
     @Autowired
     private MockMvc mockMvc;
 
-    @MockBean
-    private ApartmentService apartmentService;
+//    @MockBean
+//    private ApartmentService apartmentService;
 
     @Test
     void createView() throws Exception {
