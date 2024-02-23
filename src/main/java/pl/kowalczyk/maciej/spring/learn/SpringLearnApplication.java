@@ -57,3 +57,5 @@ public class SpringLearnApplication {
 // TODO: 13.02.2024 Powielić manage-apartment.html dla innego wybranego modelu
 
 // TODO: 20.02.2024 Dodać Bootstrapa za pomocą zależności maven
+
+// TODO: 23.02.2024 Zrealizować Mockito na własnym przykładzie
