@@ -63,4 +63,4 @@ public class SpringLearnApplication {
 // TODO: 23.02.2024 Dla wybranego controllera zrobić 3 typy testów
 
 // TODO: 23.02.2024 W UserDetailService użyć UserRepository, które należy stworzyć
-// Użyć password encoder
+// Użyć password passwordEncoder
