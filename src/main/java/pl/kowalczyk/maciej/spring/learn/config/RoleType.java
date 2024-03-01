@@ -1,5 +1,5 @@
 package pl.kowalczyk.maciej.spring.learn.config;
 
-public enum RoleTypes {
+public enum RoleType {
     ADMIN, USER, GUEST
 }
