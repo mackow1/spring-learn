@@ -10,18 +10,21 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-//@EnableWebFluxSecurity
 @Configuration
 public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+//                .authorizeHttpRequests((requests) -> requests
+//                        .anyRequest()
+//                        .authenticated()
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/authors").denyAll()
-                        .requestMatchers("/apartments/create").hasAnyRole("ADMIN")
-                        .requestMatchers("/apartments").hasAnyRole("USER")
-                        .anyRequest().authenticated()
+//                                .anyRequest().authenticated()
+                                .requestMatchers("/authors").permitAll()
+                                .requestMatchers("/apartments/create").hasAnyRole("ADMIN")
+                                .requestMatchers("/apartments").hasAnyRole("USER")
+//                        .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form.permitAll())
                 .logout((logout) -> logout.permitAll());

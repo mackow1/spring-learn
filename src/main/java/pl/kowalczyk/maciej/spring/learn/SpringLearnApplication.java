@@ -64,3 +64,6 @@ public class SpringLearnApplication {
 
 // TODO: 23.02.2024 W UserDetailService użyć UserRepository, które należy stworzyć
 // Użyć password passwordEncoder
+
+// TODO: 27.02.2024 Dodać role dla użytkownika, nowa encja (Role), wybrać właściwą relację (ONE to one etc), zmodyfikować UserService aby brał pod uwagę role.
+// Zrobić przykład z Authorities tak jak dla roles. Zweryfikować role i użytkowników w testach kontrolerów (Mock z użytkownikami - role, nazwy itp)
