@@ -3,7 +3,11 @@ package pl.kowalczyk.maciej.spring.learn.config;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "USERS")
@@ -15,9 +19,16 @@ public class UserEntity {
 
     private String username;
     private String password;
-    private String role;
+
+    @ManyToMany
+    private Set<RoleEntity> roles = new HashSet<>();
 
     public UserEntity() {
+    }
+
+    public void add(RoleEntity roleEntity) {
+        roleEntity.getUsers().add(this);
+        roles.add(roleEntity);
     }
 
     public Long getId() {
@@ -44,12 +55,12 @@ public class UserEntity {
         this.password = password;
     }
 
-    public String getRole() {
-        return role;
+    public Set<RoleEntity> getRoles() {
+        return roles;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRoles(Set<RoleEntity> roles) {
+        this.roles = roles;
     }
 
     @Override
@@ -58,7 +69,6 @@ public class UserEntity {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", role=" + role +
                 '}';
     }
 }
