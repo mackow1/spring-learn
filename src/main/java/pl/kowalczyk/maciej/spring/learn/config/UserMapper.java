@@ -2,7 +2,9 @@ package pl.kowalczyk.maciej.spring.learn.config;
 
 import org.modelmapper.ModelMapper;
 
+import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 public class UserMapper {
 
@@ -26,5 +28,16 @@ public class UserMapper {
 
         LOGGER.info("from(...) = " + userEntity);
         return userEntity;
+    }
+
+    public List<UserModel> fromEntities(List<UserEntity> userEntities) {
+        LOGGER.info("fromEntities(" + userEntities + ")");
+
+        List<UserModel> userModels = userEntities.stream()
+                .map(this::from)
+                .collect(Collectors.toList());
+
+        LOGGER.info("fromEntities(...) = " + userModels);
+        return userModels;
     }
 }
