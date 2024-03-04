@@ -3,16 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Create or edit user</title>
+    <link th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}" rel="stylesheet">
 </head>
 <body>
 <div th:if="${read}"><p>Create user</p></div>
 <div th:unless="${read}"><p>Update user</p></div>
-<div>
-    <div>User data</div>
-    <form action="#" th:action="${read} == true ? @{/users} : @{/users/{id}(id = ${userModel.id})}"
-          th:object="${userModel}" method="post">
-        <div th:replace="fragments/user :: details"></div>
-    </form>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div>User data</div>
+            <form action="#"
+                  th:action="${read} == true ? @{/users} : @{/users/{id}(id = ${userModel.id})}"
+                  th:object="${userModel}" method="post">
+                <div th:replace="fragments/user :: details"></div>
+            </form>
+        </div>
+        <div class="col"></div>
+        <div class="col"></div>
+    </div>
 </div>
 </body>
 </html>

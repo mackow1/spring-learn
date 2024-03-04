@@ -21,15 +21,15 @@
                 </tr>
                 </thead>
                 <tbody class="table-group-divider">
-                <tr th:if="${users.empty}">
-                    <td colspan="2"> No Users</td>
-                </tr>
+<!--                <tr th:if="${users.empty}">-->
+<!--                    <td colspan="2"> No Users</td>-->
+<!--                </tr>-->
                 <tr th:each="user : ${users}">
                     <td><span th:text="${user.username}"> Username </span></td>
                     <td><span th:text="${user.password}"> Password </span></td>
                     <td><a th:text="${user.roles}"> Roles </a></td>
-<!--                    <td><a th:href="@{/users/update/{id}(id = ${user.id})}"> Update </a></td>-->
-<!--                    <td><a th:href="@{/users/delete/{id}(id = ${user.id})}"> Delete </a></td>-->
+                    <td><a th:href="@{/users/update/{id}(id = ${user.id})}"> Update </a></td>
+                    <td><a th:href="@{/users/delete/{id}(id = ${user.id})}"> Delete </a></td>
                 </tr>
                 </tbody>
             </table>
