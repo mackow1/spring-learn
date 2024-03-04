@@ -59,3 +59,14 @@ public class SpringLearnApplication {
 // TODO: 20.02.2024 Dodać Bootstrapa za pomocą zależności maven
 
 // TODO: 23.02.2024 Zrealizować Mockito na własnym przykładzie
+
+// TODO: 23.02.2024 Dla wybranego controllera zrobić 3 typy testów
+
+// TODO: 23.02.2024 W UserDetailService użyć UserRepository, które należy stworzyć
+// Użyć password passwordEncoder
+
+// TODO: 27.02.2024 Dodać role dla użytkownika, nowa encja (Role), wybrać właściwą relację (ONE to one etc), zmodyfikować UserService aby brał pod uwagę role.
+// Zrobić przykład z Authorities tak jak dla roles. Zweryfikować role i użytkowników w testach kontrolerów (Mock z użytkownikami - role, nazwy itp)
+
+// TODO: 01.03.2024 Stworzyć controller umozliwiający stworzenie nowego użytkownika
+// Na formularzu tworzącym użytkownika dodać listę rozwijaną z dostępnymi rolami do wyboru
