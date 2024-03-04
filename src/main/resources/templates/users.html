@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>List of users</title>
+    <link th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+<h1>List of users</h1>
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <table class="table table-bordered">
+                <thead class="table-light">
+                <tr>
+                    <th scope="col"> Username</th>
+                    <th scope="col"> Password</th>
+                    <th scope="col"> Roles</th>
+                    <th scope="col"> Update</th>
+                    <th scope="col"> Delete</th>
+                </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                <tr th:if="${users.empty}">
+                    <td colspan="2"> No Users</td>
+                </tr>
+                <tr th:each="user : ${users}">
+                    <td><span th:text="${user.username}"> Username </span></td>
+                    <td><span th:text="${user.password}"> Password </span></td>
+                    <td><a th:text="${user.roles}"> Roles </a></td>
+<!--                    <td><a th:href="@{/users/update/{id}(id = ${user.id})}"> Update </a></td>-->
+<!--                    <td><a th:href="@{/users/delete/{id}(id = ${user.id})}"> Delete </a></td>-->
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col"></div>
+</div>
+
+<div><a th:href="@{/users/create}"> Create </a></div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

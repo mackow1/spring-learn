@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Create or edit user</title>
+</head>
+<body>
+<div th:fragment="details">
+    <div>
+        <div>
+            username: <input th:field="${userModel.username}">
+            <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</span>
+        </div>
+        <div>
+            author last name: <input th:field="${userModel.password}">
+            <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</span>
+        </div>
+        <div th:if="${read}">
+            <button type="submit">Save</button>
+        </div>
+        <div th:unless="${read}">
+            <button type="submit">Update</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
