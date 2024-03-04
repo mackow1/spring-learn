@@ -17,4 +17,14 @@ public class UserMapper {
         LOGGER.info("from(...) = " + userModel);
         return userModel;
     }
+
+    public UserEntity from(UserModel userModel) {
+        LOGGER.info("from(" + userModel + ")");
+
+        ModelMapper modelMapper = new ModelMapper();
+        UserEntity userEntity = modelMapper.map(userModel, UserEntity.class);
+
+        LOGGER.info("from(...) = " + userEntity);
+        return userEntity;
+    }
 }
