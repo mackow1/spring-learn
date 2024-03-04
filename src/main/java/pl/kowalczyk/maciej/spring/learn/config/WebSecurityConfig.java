@@ -22,8 +22,10 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests((requests) -> requests
 //                                .anyRequest().authenticated()
                                 .requestMatchers("/authors").permitAll()
-                                .requestMatchers("/apartments/create").hasAnyRole("ADMIN")
+                                .requestMatchers("/apartments/create").permitAll()
                                 .requestMatchers("/apartments").hasAnyRole("USER")
+                                .requestMatchers("/users").permitAll()
+                                .requestMatchers("/users/create").permitAll()
 //                        .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form.permitAll())

@@ -1,11 +1,13 @@
 package pl.kowalczyk.maciej.spring.learn.config;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+@Component
 public class UserMapper {
 
     private static final Logger LOGGER = Logger.getLogger(UserMapper.class.getName());
