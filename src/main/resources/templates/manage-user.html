@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <title>Create or edit user</title>
     <link th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}" rel="stylesheet">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+<div th:text="${roles}"></div>
 <div th:if="${read}"><p>Create user</p></div>
 <div th:unless="${read}"><p>Update user</p></div>
 <div class="container-fluid">
