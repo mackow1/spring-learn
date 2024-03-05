@@ -21,9 +21,11 @@ public class UserController {
     private static final Logger LOGGER = Logger.getLogger(UserController.class.getName());
 
     private final UserService userService;
+    private final RoleService roleService;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, RoleService roleService) {
         this.userService = userService;
+        this.roleService = roleService;
     }
 
     @GetMapping
@@ -43,6 +45,9 @@ public class UserController {
 
         modelMap.addAttribute("read", true);
         modelMap.addAttribute("userModel", new UserModel());
+
+        List<RoleModel> roles = roleService.list();
+        modelMap.addAttribute("roles", roles);
 
         String result = "manage-user.html";
 

@@ -1,6 +1,7 @@
 package pl.kowalczyk.maciej.spring.learn.config;
 
 import org.springframework.dao.DataAccessException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.kowalczyk.maciej.spring.learn.api.exception.user.UserCreateException;
 import pl.kowalczyk.maciej.spring.learn.api.exception.user.UserDeleteException;
@@ -19,10 +20,12 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository, UserMapper userMapper) {
+    public UserService(UserRepository userRepository, UserMapper userMapper, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public List<UserModel> list() {
@@ -38,11 +41,16 @@ public class UserService {
     public UserModel create(UserModel userModel) throws UserCreateException {
         LOGGER.info("create(" + userModel + ")");
 
-        if (userModel == null) {
-            throw new UserCreateException("Model must not be NULL");
-        }
+//        Metoda save sprawdza null
+
+//        if (userModel == null) {
+//            throw new UserCreateException("Model must not be NULL");
+//        }
 
         try {
+            String passwordEncoded = passwordEncoder.encode(userModel.getPassword());
+            userModel.setPassword(passwordEncoded);
+
             UserEntity userEntity = userMapper.from(userModel);
             UserEntity savedUserEntity = userRepository.save(userEntity);
             UserModel createdUserModel = userMapper.from(savedUserEntity);
@@ -82,6 +90,9 @@ public class UserService {
         if (userModel == null) {
             throw new UserUpdateException("Model must not be NULL");
         }
+
+        String passwordEncoded = passwordEncoder.encode(userModel.getPassword());
+        userModel.setPassword(passwordEncoded);
 
         UserEntity userEntity = userMapper.from(userModel);
         UserEntity updatedUserEntity;
