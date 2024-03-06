@@ -9,6 +9,8 @@ public class UserModel {
     private String username;
     private String password;
     private Set<RoleType> roles = new HashSet<>();
+    private Long roleId;
+//    private RoleType selectedRole;
 
     public UserModel() {
     }
@@ -46,12 +48,22 @@ public class UserModel {
         return roles;
     }
 
+    public Long getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
+    }
+
     @Override
     public String toString() {
         return "UserModel{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
+//                ", password='" + password + '\'' +
                 ", roles=" + roles +
+                ", roleId=" + roleId +
                 '}';
     }
 }

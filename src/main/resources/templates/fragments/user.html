@@ -17,10 +17,20 @@
         </div>
 
         <div class="dropdown">
-            <select name="roles" id="roles">
-                <option value="ADMIN">ADMIN</option>
-                <option value="USER">USER</option>
-                <option value="GUEST">GUEST</option>
+<!--            <select name="roles" id="roles">-->
+<!--            <select>-->
+<!--                <option value="ADMIN">ADMIN</option>-->
+<!--                <option value="USER">USER</option>-->
+<!--                <option value="GUEST">GUEST</option>-->
+<!--            </select>-->
+        </div>
+
+        <div>
+<!--            <select th:field="*{selectedRole}">-->
+            <select name="roleId">
+                <option th:each="role : ${roles}"
+                        th:value="${role.id}"
+                        th:text="${role.name}">Unknown</option>
             </select>
         </div>
 

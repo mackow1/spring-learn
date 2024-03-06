@@ -21,11 +21,13 @@ public class UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
+    private final RoleRepository roleRepository;
 
-    public UserService(UserRepository userRepository, UserMapper userMapper, PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository, UserMapper userMapper, PasswordEncoder passwordEncoder, RoleRepository roleRepository) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
         this.passwordEncoder = passwordEncoder;
+        this.roleRepository = roleRepository;
     }
 
     public List<UserModel> list() {
@@ -51,7 +53,15 @@ public class UserService {
             String passwordEncoded = passwordEncoder.encode(userModel.getPassword());
             userModel.setPassword(passwordEncoded);
 
+            Long roleId = userModel.getRoleId();
+            Optional<RoleEntity> optionalRoleEntity = roleRepository.findById(roleId);
+            RoleEntity selectedRoleEntity = optionalRoleEntity.orElseThrow(
+                    () -> new UserCreateException("Entity does not exist")
+            );
+
             UserEntity userEntity = userMapper.from(userModel);
+            userEntity.add(selectedRoleEntity);
+
             UserEntity savedUserEntity = userRepository.save(userEntity);
             UserModel createdUserModel = userMapper.from(savedUserEntity);
 

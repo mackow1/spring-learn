@@ -70,3 +70,5 @@ public class SpringLearnApplication {
 
 // TODO: 01.03.2024 Stworzyć controller umozliwiający stworzenie nowego użytkownika
 // Na formularzu tworzącym użytkownika dodać listę rozwijaną z dostępnymi rolami do wyboru
+
+// TODO: 05.03.2024 Na widoku z listą użytkowników dodać stronicowanie wyników, 4 elementy na stronę (użyć mechanizmu DataJPA - JpaRepository)
